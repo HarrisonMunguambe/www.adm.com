@@ -4,7 +4,7 @@
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
   <footer class="footer-section section--bg pt-120">
     <div class="footer-element" data-aos="fade-left" data-aos-duration="1200">
-      <img src="@/assets/images/element/element-1.png" alt="element" />
+      <img src="@/assets/images/element/element-1.png" alt="elemento" />
     </div>
     <div class="container">
       <div class="footer-top-area">
@@ -16,38 +16,38 @@
                   ><img
                     class="adm-logo-footer"
                     src="@/assets/images/brand/logoADM.jpg"
-                    alt="site-logo"
+                    alt="logo da ADM"
                 /></router-link>
               </div>
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
             <div class="footer-widget">
-              <h4 class="widget-title">EUROPE</h4>
+              <h4 class="widget-title">AEROPORTO DE MAPUTO (MPM)</h4>
               <ul class="footer-list">
-                <li><a href="#0">Europe 45 Gloucester Road</a></li>
-                <li><a href="#0">London DT1M 3BF</a></li>
-                <li><a href="#0">+44 (0)20 3671 5709</a></li>
+                <li><a href="#0">Cidade de Maputo, Mo&ccedil;ambique</a></li>
+                <li><a href="#0">Terminal Internacional</a></li>
+                <li><a href="#0">Informa&ccedil;&otilde;es de voos e servi&ccedil;os</a></li>
               </ul>
             </div>
           </div>
           <div class="col-xl-2 col-lg-3 col-md-6 mb-30">
             <div class="footer-widget">
-              <h4 class="widget-title">ASIA & PACIFIC</h4>
+              <h4 class="widget-title">AEROPORTO DA BEIRA (BEW)</h4>
               <ul class="footer-list">
-                <li><a href="#0">2473 Red Road Ste 98</a></li>
-                <li><a href="#0">Singapore SG</a></li>
-                <li><a href="#0">+ 1 623 211 6319</a></li>
+                <li><a href="#0">Cidade da Beira</a></li>
+
+                <li><a href="#0">Atendimento ao passageiro</a></li>
               </ul>
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
             <div class="footer-widget">
-              <h4 class="widget-title">NORTH AMERICA</h4>
+              <h4 class="widget-title">AEROPORTO DE NAMPULA (APL)</h4>
               <ul class="footer-list">
-                <li><a href="#0">Europe 45 Gloucester Road</a></li>
-                <li><a href="#0">London DT1M 3BF</a></li>
-                <li><a href="#0">+44 (0)20 3671 5709</a></li>
+                <li><a href="#0">Cidade de Nampula, Nampula</a></li>
+                <li><a href="#0">Liga&ccedil;&atilde;o ao norte do pa&iacute;s</a></li>
+                <li><a href="#0">Servi&ccedil;os de apoio ao viajante</a></li>
               </ul>
             </div>
           </div>
@@ -57,48 +57,52 @@
         <div class="row mb-30-none">
           <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
             <div class="footer-widget">
-              <h4 class="title">Get started</h4>
+              <h4 class="title">Aeroportos</h4>
               <ul class="footer-list">
-                <li><a href="#0">Private jet</a></li>
-                <li><a href="#0">Register</a></li>
-                <li><a href="#0">Current Jet Deals</a></li>
-                <li><a href="#0">Flynext mobile app</a></li>
+                <li><a href="#0">Maputo (MPM)</a></li>
+                <li><a href="#0">Beira (BEW)</a></li>
+                <li><a href="#0">Nampula (APL)</a></li>
+                <li><a href="#0">Pemba (POL)</a></li>
               </ul>
             </div>
           </div>
           <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
             <div class="footer-widget">
-              <h4 class="title">How it works</h4>
+              <h4 class="title">Servi&ccedil;os ao Passageiro</h4>
               <ul class="footer-list">
-                <li><a href="#0">How it works</a></li>
-                <li><a href="#0">Ways to fly</a></li>
-                <li><a href="#0">Ways to buy</a></li>
-                <li><a href="#0">Private charter</a></li>
-                <li><a href="#0">Private Jet Cost</a></li>
+                <li><a href="#0">Partidas e chegadas</a></li>
+                <li><a href="#0">Informa&ccedil;&atilde;o de bagagem</a></li>
+                <li><a href="#0">Assist&ecirc;ncia especial</a></li>
+                <li><a href="#0">Perguntas frequentes</a></li>
+                <li><a href="#0">Companhias a&eacute;reas</a></li>
               </ul>
             </div>
           </div>
           <div class="col-xl-2 col-lg-2 col-md-6 mb-30">
             <div class="footer-widget">
-              <h4 class="title">About us</h4>
+              <h4 class="title">Institucional</h4>
               <ul class="footer-list">
-                <li><a href="#0">About us</a></li>
-                <li><a href="#0">News & press</a></li>
-                <li><a href="#0">Blog</a></li>
-                <li><a href="#0">FAQs</a></li>
-                <li><a href="#0">Careers</a></li>
+                <li><a href="#0">Sobre a ADM</a></li>
+                <li><a href="#0">Not&iacute;cias</a></li>
+                <li><a href="#0">Carreiras</a></li>
+                <li><a href="#0">Parcerias</a></li>
+                <li><a href="#0">Transpar&ecirc;ncia</a></li>
               </ul>
             </div>
           </div>
           <div class="col-xl-4 col-lg-4 col-md-6 mb-30">
             <div class="footer-widget">
-              <h4 class="title">Newsletter</h4>
-              <p>Flynext was founded in 1991 by a group of safety-focused professionals erators.</p>
+              <h4 class="title">Contacto</h4>
+              <p>
+                Receba atualiza&ccedil;&otilde;es sobre opera&ccedil;&otilde;es
+                aeroportu&aacute;rias, hor&aacute;rios e servi&ccedil;os dos Aeroportos de
+                Mo&ccedil;ambique.
+              </p>
               <form class="subscribe-form">
                 <label class="subscribe-icon"><i class="las la-envelope"></i></label>
-                <input type="text" class="form--control" placeholder="Enter Email" />
+                <input type="text" class="form--control" placeholder="Insira o seu e-mail" />
                 <button type="submit" class="btn--base">
-                  Subscribe Us <i class="icon-btn-icon ml-1"></i>
+                  Subscrever <i class="icon-btn-icon ml-1"></i>
                 </button>
               </form>
             </div>
@@ -122,7 +126,7 @@
             </li>
           </ul>
         </div>
-        <p>Â© 2022 Fly Next Airlines. All rights reserved.</p>
+        <p>&copy; 2026 Aeroportos de Mo&ccedil;ambique. Todos os direitos reservados.</p>
       </div>
     </div>
   </footer>

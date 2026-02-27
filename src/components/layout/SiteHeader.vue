@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         Start Header
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -21,50 +21,50 @@
                 data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent"
                 aria-expanded="false"
-                aria-label="Toggle navigation"
+                aria-label="Alternar navega&ccedil;&atilde;o"
               >
                 <span class="fas fa-bars"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav main-menu ml-auto">
                   <li class="menu_has_children">
-                    <a href="#0">Home</a>
+                    <a href="#0">In&iacute;cio</a>
                     <ul class="sub-menu">
-                      <li><router-link to="/index">Home One</router-link></li>
-                      <li><router-link to="/index-two">Home Two</router-link></li>
-                      <li><router-link to="/index-dark">Home Dark</router-link></li>
+                      <li><router-link to="/index">P&aacute;gina Inicial 1</router-link></li>
+                      <li><router-link to="/index-two">P&aacute;gina Inicial 2</router-link></li>
+                      <li><router-link to="/index-dark">P&aacute;gina Inicial Escura</router-link></li>
                     </ul>
                   </li>
-                  <li><router-link to="/about">About Us</router-link></li>
+                  <li><router-link to="/about">Sobre N&oacute;s</router-link></li>
                   <li class="menu_has_children">
-                    <a href="#0">Pages</a>
+                    <a href="#0">P&aacute;ginas</a>
                     <ul class="sub-menu">
-                      <li><router-link to="/service">Service</router-link></li>
-                      <li><router-link to="/service-details">Service Details</router-link></li>
-                      <li><router-link to="/deals">Deals</router-link></li>
-                      <li><router-link to="/deals-details">Deals Details</router-link></li>
-                      <li><router-link to="/package">Package</router-link></li>
-                      <li><router-link to="/package-details">Package Details</router-link></li>
-                      <li><router-link to="/course">Our Course</router-link></li>
-                      <li><router-link to="/course-details">Course Details</router-link></li>
-                      <li><router-link to="/team">Our Team</router-link></li>
-                      <li><router-link to="/team-details">Team Details</router-link></li>
-                      <li><router-link to="/faq">FAQ</router-link></li>
-                      <li><router-link to="/register">Sign Up</router-link></li>
-                      <li><router-link to="/login">Sign In</router-link></li>
-                      <li><router-link to="/404">404 Page</router-link></li>
+                      <li><router-link to="/service">Servi&ccedil;os</router-link></li>
+                      <li><router-link to="/service-details">Detalhes do Servi&ccedil;o</router-link></li>
+                      <li><router-link to="/deals">Ofertas</router-link></li>
+                      <li><router-link to="/deals-details">Detalhes da Oferta</router-link></li>
+                      <li><router-link to="/package">Pacotes</router-link></li>
+                      <li><router-link to="/package-details">Detalhes do Pacote</router-link></li>
+                      <li><router-link to="/course">Nossos Cursos</router-link></li>
+                      <li><router-link to="/course-details">Detalhes do Curso</router-link></li>
+                      <li><router-link to="/team">Nossa Equipa</router-link></li>
+                      <li><router-link to="/team-details">Detalhes da Equipa</router-link></li>
+                      <li><router-link to="/faq">Perguntas Frequentes</router-link></li>
+                      <li><router-link to="/register">Registar</router-link></li>
+                      <li><router-link to="/login">Entrar</router-link></li>
+                      <li><router-link to="/404">P&aacute;gina 404</router-link></li>
                     </ul>
                   </li>
                   <li class="menu_has_children">
                     <a href="#0">Blog</a>
                     <ul class="sub-menu">
                       <li><router-link to="/blog">Blog</router-link></li>
-                      <li><router-link to="/blog-classic">Blog Classic</router-link></li>
-                      <li><router-link to="/blog-details">Blog Details</router-link></li>
+                      <li><router-link to="/blog-classic">Blog Cl&aacute;ssico</router-link></li>
+                      <li><router-link to="/blog-details">Detalhes do Blog</router-link></li>
                     </ul>
                   </li>
-                  <li><router-link to="/faq">Faq</router-link></li>
-                  <li><router-link to="/contact">Contact Us</router-link></li>
+                  <li><router-link to="/faq">FAQ</router-link></li>
+                  <li><router-link to="/contact">Contactos</router-link></li>
                 </ul>
                 <div class="header-right">
                   <div class="search-bar d-none d-lg-block">
@@ -79,7 +79,7 @@
                           type="search"
                           name="keyword"
                           id="header_search"
-                          placeholder="Search Product..."
+                          placeholder="Pesquisar..."
                         />
                         <button class="header-search-btn"><i class="fas fa-search"></i></button>
                       </form>
@@ -91,7 +91,7 @@
                     ></router-link>
                     <div class="header-action">
                       <router-link to="/service-details" class="btn--base"
-                        ><i class="icon-btn-icon"></i> Book Now</router-link
+                        ><i class="icon-btn-icon"></i> Reservar Agora</router-link
                       >
                     </div>
                   </div>
