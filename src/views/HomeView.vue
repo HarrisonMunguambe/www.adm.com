@@ -1,9 +1,31 @@
-<script setup>
-import TheWelcome from '../components/TheWelcome.vue'
+﻿<script setup>
+import BannerSection from '@/components/sections/BannerSection.vue'
+import CallWidgetSection from '@/components/sections/CallWidgetSection.vue'
+import OverviewSection from '@/components/sections/OverviewSection.vue'
+import AboutSection from '@/components/sections/AboutSection.vue'
+import FeatureSection from '@/components/sections/FeatureSection.vue'
+import StatisticsSection from '@/components/sections/StatisticsSection.vue'
+import CharterSection from '@/components/sections/CharterSection.vue'
+import BookFormSection from '@/components/sections/BookFormSection.vue'
+import PackageSection from '@/components/sections/PackageSection.vue'
+import ClientSection from '@/components/sections/ClientSection.vue'
+import BrandSection from '@/components/sections/BrandSection.vue'
+import BlogSection from '@/components/sections/BlogSection.vue'
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <BannerSection />
+    <CallWidgetSection />
+    <OverviewSection />
+    <AboutSection />
+    <FeatureSection />
+    <StatisticsSection />
+    <CharterSection />
+    <BookFormSection />
+    <PackageSection />
+    <ClientSection />
+    <BrandSection />
+    <BlogSection />
   </main>
 </template>
