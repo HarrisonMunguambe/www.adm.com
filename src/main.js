@@ -15,12 +15,6 @@ import './assets/css/fontawesome-all.min.css'
 import './assets/css/line-awesome.min.css'
 import './assets/css/icomoon.css'
 import './assets/css/style.css'
-// 2. SEGUNDO: jQuery (deve vir antes do Bootstrap)
 
-// 3. TERCEIRO: Bootstrap JS (depende do jQuery)
-
-// 4. QUARTO: Resto dos plugins
-
-// 5. POR ÚLTIMO: main.js do template
 
 createApp(App).use(router).mount('#app')
