@@ -5,11 +5,11 @@
   <section class="about-section">
     <div class="container">
       <div class="row align-items-center g-5">
-        <!-- Coluna da Imagem (esquerda) com Slider AutomÃ¡tico -->
+        <!-- Coluna da Imagem (esquerda) com Slider Automático -->
         <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1200">
           <div class="about-image-wrapper">
             <div class="about-image-main">
-              <!-- Slider AutomÃ¡tico -->
+              <!-- Slider Automático -->
               <div class="image-slider">
                 <div
                   v-for="(image, index) in sliderImages"
@@ -32,11 +32,11 @@
                 ></span>
               </div>
 
-              <!-- Badge flutuante com anos de histÃ³ria -->
+              <!-- Badge flutuante com anos de história -->
               <div class="floating-badge">
                 <div class="badge-content">
                   <span class="badge-number">45</span>
-                  <span class="badge-text">Anos de<br />ExcelÃªncia</span>
+                  <span class="badge-text">Anos de<br />Excel&ecirc;ncia</span>
                 </div>
               </div>
 
@@ -49,49 +49,50 @@
           </div>
         </div>
 
-        <!-- Coluna do ConteÃºdo (direita) -->
+        <!-- Coluna do Conteúdo (direita) -->
         <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1200">
           <div class="about-content">
-            <!-- Tag de identificaÃ§Ã£o -->
-            <span class="section-tag">
+            <!-- Tag de identificação -->
+            <!-- <span class="section-tag">
               <i class="fas fa-building mr-2"></i>
-              SOBRE A ADM â€¢ EP
-            </span>
+              SOBRE A ADM &bull; EP
+            </span> -->
 
-            <!-- TÃ­tulo principal melhorado -->
+            <!-- Título principal melhorado -->
             <h2 class="about-title">
-              <span class="title-line">Conectando MoÃ§ambique</span>
+              <span class="title-line">Conectando Mo&ccedil;ambique</span>
               <span class="title-line-highlight">ao Mundo</span>
             </h2>
 
-            <!-- DescriÃ§Ã£o institucional melhorada -->
+            <!-- Descrição institucional melhorada -->
             <div class="about-description">
               <p class="lead-text">
-                A Aeroportos de MoÃ§ambique Ã© a porta de entrada para um paÃ­s de sonhos, negÃ³cios e
-                oportunidades.
+                A Aeroportos de Mo&ccedil;ambique &eacute; a porta de entrada para um pa&iacute;s de
+                sonhos, neg&oacute;cios e oportunidades.
               </p>
 
               <p>
-                Com mais de 45 anos de histÃ³ria, evoluÃ­mos dos primeiros ServiÃ§os de AeronÃ¡utica
-                Civil (SAC) para nos tornar uma referÃªncia em infraestrutura aeroportuÃ¡ria na Ãfrica
-                Austral. Gerimos com orgulho a maior rede aeroportuÃ¡ria do paÃ­s, conectando
-                MoÃ§ambique a 15 destinos internacionais atravÃ©s dos nossos 7 aeroportos
-                internacionais.
+                Com mais de 45 anos de hist&oacute;ria, evolu&iacute;mos dos primeiros
+                Servi&ccedil;os de Aeron&aacute;utica Civil (SAC) para nos tornar uma
+                refer&ecirc;ncia em infraestrutura aeroportu&aacute;ria na &Aacute;frica Austral.
+                Gerimos com orgulho a maior rede aeroportu&aacute;ria do pa&iacute;s, conectando
+                Mo&ccedil;ambique a 15 destinos internacionais atrav&eacute;s dos nossos 7
+                aeroportos internacionais.
               </p>
 
               <p class="highlight-text">
                 <i class="fas fa-quote-left"></i>
-                A nossa missÃ£o vai alÃ©m de gerir aeroportos. Trabalhamos diariamente para garantir
-                que cada passageiro tenha uma experiÃªncia segura, eficiente e acolhedora, refletindo
-                o verdadeiro espÃ­rito moÃ§ambicano.
+                A nossa miss&atilde;o vai al&eacute;m de gerir aeroportos. Trabalhamos diariamente
+                para garantir que cada passageiro tenha uma experi&ecirc;ncia segura, eficiente e
+                acolhedora, refletindo o verdadeiro esp&iacute;rito mo&ccedil;ambicano.
               </p>
             </div>
 
-            <!-- BotÃµes de aÃ§Ã£o -->
+            <!-- Botões de ação -->
             <div class="about-buttons">
               <router-link to="/sobre-nos" class="btn--base btn-primary">
                 <i class="fas fa-chevron-right mr-2"></i>
-                ConheÃ§a a nossa histÃ³ria
+                Conhe&ccedil;a a nossa hist&oacute;ria
               </router-link>
 
               <router-link to="/contactos" class="btn-outline-primary">
@@ -117,23 +118,23 @@ import sliderImg3 from '@/assets/images/ADM/624737115_1534931181975615_155120941
 // Array com as imagens do slider
 const sliderImages = [sliderImg1, sliderImg2, sliderImg3]
 
-// Slide atual (comeÃ§a no 0)
+// Slide atual (começa no 0)
 const currentSlide = ref(0)
 
-// Intervalo para troca automÃ¡tica
+// Intervalo para troca automática
 let slideInterval = null
 
-// FunÃ§Ã£o para avanÃ§ar para o prÃ³ximo slide
+// Função para avançar para o próximo slide
 const nextSlide = () => {
   currentSlide.value = (currentSlide.value + 1) % sliderImages.length
 }
 
-// Iniciar o slider automÃ¡tico
+// Iniciar o slider automático
 onMounted(() => {
   slideInterval = setInterval(nextSlide, 4000) // Troca a cada 4 segundos
 })
 
-// Limpar o intervalo quando o componente for destruÃ­do
+// Limpar o intervalo quando o componente for destruído
 onUnmounted(() => {
   if (slideInterval) {
     clearInterval(slideInterval)
@@ -257,7 +258,7 @@ onUnmounted(() => {
   border-color: #f2e416;
 }
 
-/* Badge flutuante (anos de histÃ³ria) */
+/* Badge flutuante (anos de história) */
 .floating-badge {
   position: absolute;
   bottom: 30px;
@@ -319,7 +320,7 @@ onUnmounted(() => {
   font-size: 0.9rem;
 }
 
-/* ===== ESTILOS DO CONTEÃšDO ===== */
+/* ===== ESTILOS DO CONTEÚDO ===== */
 .about-content {
   padding-left: 20px;
 }
@@ -337,7 +338,7 @@ onUnmounted(() => {
   margin-bottom: 20px;
 }
 
-/* TÃ­tulo melhorado com duas linhas */
+/* Título melhorado com duas linhas */
 .about-title {
   font-size: 2.8rem;
   font-weight: 700;
@@ -356,7 +357,6 @@ onUnmounted(() => {
   color: #f2e416;
   font-size: 2.8rem;
 }
-
 
 .about-description {
   margin-bottom: 35px;
@@ -394,7 +394,7 @@ onUnmounted(() => {
   opacity: 0.7;
 }
 
-/* BotÃµes */
+/* Botões */
 .about-buttons {
   display: flex;
   gap: 15px;
@@ -444,7 +444,7 @@ onUnmounted(() => {
   margin-right: 10px;
 }
 
-/*animaÃ§Ãµes */
+/*animações */
 @keyframes float {
   0%,
   100% {
@@ -465,7 +465,6 @@ onUnmounted(() => {
     font-size: 2.2rem;
   }
 
-  
   .about-image-main {
     aspect-ratio: 5/4;
     min-height: 500px;
@@ -482,7 +481,6 @@ onUnmounted(() => {
     margin-bottom: 40px;
   }
 
-  
   .about-image-main {
     aspect-ratio: 4/3;
     min-height: auto;
@@ -576,4 +574,3 @@ onUnmounted(() => {
   }
 }
 </style>
-
