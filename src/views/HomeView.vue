@@ -1,5 +1,7 @@
 ﻿<script setup>
 import BannerSection from '@/components/sections/BannerSection.vue'
+import ADMSection from '@/components/sections/ADMSection.vue'
+import HeroSection from '@/components/sections/HeroSection.vue'
 import CallWidgetSection from '@/components/sections/CallWidgetSection.vue'
 import OverviewSection from '@/components/sections/OverviewSection.vue'
 import AboutSection from '@/components/sections/AboutSection.vue'
@@ -16,6 +18,8 @@ import BlogSection from '@/components/sections/BlogSection.vue'
 <template>
   <main>
     <BannerSection />
+    <ADMSection />
+    <HeroSection />
     <CallWidgetSection />
     <OverviewSection />
     <AboutSection />
