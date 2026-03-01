@@ -52,7 +52,7 @@
             <div class="flight-cta">
               <router-link to="/voos" class="btn--base">
                 <i class="fas fa-plane-departure mr-2"></i>
-                Ver página completa de voos
+                Rastrear voos
                 <i class="fas fa-arrow-right ml-2"></i>
               </router-link>
             </div>
@@ -172,17 +172,8 @@ const searchFlights = () => {
 
 .text-highlight {
   color: #f2e416;
-}
-
-.text-highlight::after {
-  content: '';
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  background: rgba(242, 228, 22, 0.3);
-  z-index: -1;
+  position: relative;
+  display: inline-block;
 }
 
 /* Descrição */

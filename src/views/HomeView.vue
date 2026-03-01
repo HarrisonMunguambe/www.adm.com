@@ -22,9 +22,9 @@ import AirportsSections from '@/components/sections/AirportsSections.vue'
     <ADMSection />
     <HeroSection />
     <CallWidgetSection />
-    <OverviewSection />
     <AirportsSections />
     <AboutSection />
+    <OverviewSection />
     <FeatureSection />
     <StatisticsSection />
     <CharterSection />

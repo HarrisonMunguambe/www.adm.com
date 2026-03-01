@@ -9,10 +9,11 @@
         </span>
         <h2 class="section-title">
           <span class="title-line">Rede de</span>
-          <span class="title-line-highlight">Aeroportos</span>
+          <span class="title-line-highlight">Aeroportos </span> Nacionais
         </h2>
         <p class="section-description">
           De norte a sul do país, garantimos a conectividade de Moçambique com o mundo.
+          Contrubuirndo para o desenvolvimento económico e turístico de Moçambique.
         </p>
       </div>
 
@@ -316,23 +317,25 @@ onUnmounted(() => {
   font-weight: 700;
   line-height: 1.2;
   color: #030140;
-  margin-bottom: 20px;
+  margin-bottom: 25px !important;
 }
 
 .title-line {
-  display: block;
+  display: inline-block;
   font-size: 2.8rem;
+  color: #030140 !important;
+  margin-right: 10px;
 }
 
 .title-line-highlight {
-  display: block;
+  display: inline-block;
   color: #f2e416;
   font-size: 3.2rem;
   text-shadow: 0 2px 10px rgba(242, 228, 22, 0.2);
 }
 
 .section-description {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   color: #4a5568;
   max-width: 700px;
   margin: 0 auto;
