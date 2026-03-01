@@ -2,7 +2,7 @@
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       Start News Section - Últimas Notícias
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-  <section class="news-section pt-120 pb-120">
+  <section class="news-section pb-120">
     <div class="container">
       <!-- Cabeçalho da seção -->
       <div class="section-header text-center" data-aos="fade-up">
@@ -11,8 +11,9 @@
           COMUNICADOS E NOTÍCIAS
         </span>
         <h2 class="section-title">
-          <span class="title-line">Acompanhe as</span>
-          <span class="title-line-highlight">últimas novidades</span>
+          Últimas
+          <span class="title-line-highlight">Notícias</span>
+          e Comunicados
         </h2>
         <p class="section-description">
           Fique a par dos comunicados oficiais, novos voos, inaugurações e desenvolvimentos na rede
@@ -132,7 +133,8 @@
 
 <style scoped>
 .news-section {
-  padding: 100px 0;
+  padding-bottom: 100px;
+  padding-top: 20px;
   background: white;
   position: relative;
 }
@@ -159,19 +161,21 @@
   font-weight: 700;
   line-height: 1.2;
   color: #030140;
-  margin-bottom: 20px;
+  margin-bottom: 20px !important;
 }
 
 .title-line {
-  display: block;
+  display: inline-block;
   font-size: 2.5rem;
+  margin-right: 10px;
 }
 
 .title-line-highlight {
-  display: block;
+  display: inline-block;
   color: #f2e416;
   font-size: 2.8rem;
   text-shadow: 0 2px 10px rgba(242, 228, 22, 0.2);
+  margin-right: 10px;
 }
 
 .section-description {

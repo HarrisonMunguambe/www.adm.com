@@ -2,7 +2,7 @@
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       Start Partners Section - Parceiros
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-  <section class="partners-section pt-120 pb-120">
+  <section class="partners-section pb-120">
     <div class="container">
       <!-- Cabeçalho da seção -->
       <div class="section-header text-center" data-aos="fade-up">
@@ -11,8 +11,9 @@
           PARCEIROS INSTITUCIONAIS
         </span>
         <h2 class="section-title">
-          <span class="title-line">Conectamos Moçambique</span>
-          <span class="title-line-highlight">ao mundo com os melhores parceiros</span>
+          Os Nossos
+          <span class="title-line-highlight">Parceiros</span>
+          Estratégicos
         </h2>
         <p class="section-description">
           Trabalhamos em conjunto com as principais companhias aéreas e entidades do setor para
@@ -71,7 +72,10 @@
         </div>
         <div class="partner-card">
           <div class="partner-logo">
-            <img src="@/assets/images/Partners/649e1c738c189557e58cf78e1ec21cfe.jpg" alt="Fly Emirates" />
+            <img
+              src="@/assets/images/Partners/649e1c738c189557e58cf78e1ec21cfe.jpg"
+              alt="Fly Emirates"
+            />
           </div>
           <p class="partner-name">Fly Emirates</p>
         </div>
@@ -88,7 +92,8 @@
 
 <style scoped>
 .partners-section {
-  padding: 100px 0;
+  padding-top: 20px;
+  padding-bottom: 100px;
   background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
   position: relative;
 }
@@ -115,19 +120,21 @@
   font-weight: 700;
   line-height: 1.2;
   color: #030140;
-  margin-bottom: 20px;
+  margin-bottom: 25px !important;
 }
 
 .title-line {
-  display: block;
+  display: inline-block;
   font-size: 2.5rem;
+  margin-right: 10px;
 }
 
 .title-line-highlight {
-  display: block;
+  display: inline-block;
   color: #f2e416;
   font-size: 2.8rem;
   text-shadow: 0 2px 10px rgba(242, 228, 22, 0.2);
+  margin-right: 10px;
 }
 
 .section-description {

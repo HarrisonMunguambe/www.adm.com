@@ -11,8 +11,9 @@
           NOSSOS SERVIÇOS
         </span>
         <h2 class="section-title">
-          <span class="title-line">Infraestruturas modernas e gestão eficiente</span>
-          <span class="title-line-highlight">ao serviço de Moçambique</span>
+          Os Nossos
+          <span class="title-line-highlight">Serviços</span>
+          Aeroportuários
         </h2>
         <p class="section-description">
           Conheça as principais áreas de atuação da Aeroportos de Moçambique.
@@ -317,19 +318,21 @@ onUnmounted(() => {
   font-weight: 700;
   line-height: 1.2;
   color: #030140;
-  margin-bottom: 15px;
+  margin-bottom: 25px !important;
 }
 
 .title-line {
-  display: block;
+  display: inline-block;
   font-size: 2.5rem;
+  margin-right: 10px;
 }
 
 .title-line-highlight {
-  display: block;
+  display: inline-block;
   color: #f2e416;
   font-size: 2.8rem;
   text-shadow: 0 2px 10px rgba(242, 228, 22, 0.2);
+  margin-right: 10px;
 }
 
 .section-description {

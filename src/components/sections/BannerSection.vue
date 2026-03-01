@@ -28,15 +28,7 @@
             ><i class="fab fa-facebook-f"></i
           ></a>
         </li>
-        <li>
-          <a
-            href="https://twitter.com/aeroportosmz"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="active"
-            ><i class="fab fa-twitter"></i
-          ></a>
-        </li>
+
         <li>
           <a
             href="https://youtube.com/aeroportosmocambique"
