@@ -15,9 +15,12 @@
     "format": "prettier --write --experimental-cli src/"
   },
   "dependencies": {
+    "@fawmi/vue-google-maps": "^0.9.79",
+    "@maptiler/sdk": "^3.11.1",
     "pinia": "^3.0.4",
     "vue": "^3.5.29",
-    "vue-router": "^5.0.3"
+    "vue-router": "^5.0.3",
+    "vue3-gmap-custom-marker": "^1.0.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.4",

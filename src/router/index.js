@@ -15,6 +15,31 @@ const router = createRouter({
       name: 'about',
       component: () => import('../views/AboutView.vue'),
     },
+    // Rotas de compatibilidade para links já usados nos componentes
+    {
+      path: '/sobre-nos',
+      redirect: '/about',
+    },
+    {
+      path: '/contactos',
+      redirect: '/about',
+    },
+    {
+      path: '/servicos',
+      redirect: '/',
+    },
+    {
+      path: '/voos',
+      redirect: '/',
+    },
+    {
+      path: '/aeroportos',
+      redirect: '/',
+    },
+    {
+      path: '/aeroportos/:slug',
+      redirect: '/',
+    },
     {
       path: '/:pathMatch(.*)*',
       redirect: '/',

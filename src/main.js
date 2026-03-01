@@ -2,6 +2,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
+import VueGoogleMaps from '@fawmi/vue-google-maps'
 
 // 1. PRIMEIRO: CSS
 import './assets/css/bootstrap.min.css'
@@ -17,4 +18,11 @@ import './assets/css/icomoon.css'
 import './assets/css/style.css'
 
 
-createApp(App).use(router).mount('#app')
+createApp(App)
+  .use(router)
+  .use(VueGoogleMaps, {
+    load: {
+      key: import.meta.env.VITE_GOOGLE_MAPS_API_KEY || '',
+    },
+  })
+  .mount('#app')

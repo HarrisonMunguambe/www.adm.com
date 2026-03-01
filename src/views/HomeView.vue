@@ -13,6 +13,7 @@ import PackageSection from '@/components/sections/PackageSection.vue'
 import ClientSection from '@/components/sections/ClientSection.vue'
 import BrandSection from '@/components/sections/BrandSection.vue'
 import BlogSection from '@/components/sections/BlogSection.vue'
+import AirportsSections from '@/components/sections/AirportsSections.vue'
 </script>
 
 <template>
@@ -22,6 +23,7 @@ import BlogSection from '@/components/sections/BlogSection.vue'
     <HeroSection />
     <CallWidgetSection />
     <OverviewSection />
+    <AirportsSections />
     <AboutSection />
     <FeatureSection />
     <StatisticsSection />

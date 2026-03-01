@@ -2,7 +2,7 @@
         <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         Start About
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-        <section class="about-section bg-overlay-base ptb-120 bg_img" style="background-image: url('/src/assets/images/bg/bg-1.png')">
+        <section class="about-section bg-overlay-base ptb-120 bg_img" style="background-image: url('/src/assets/images/ADM/625385843_1534931231975610_3054440981549519282_n copy.jpg.jpeg')">
             <div class="about-element">
                 <img src="@/assets/images/element/element-8.png" alt="element">
             </div>
@@ -10,22 +10,24 @@
                 <div class="row justify-content-center mb-30-none">
                     <div class="col-xl-7 col-lg-7 mb-30">
                         <div class="about-content">
-                            <span class="sub-title"><span>About</span> Flynext</span>
-                            <h2 class="title">Private Jet Charters save your
-                                time and give more comfort</h2>
-                            <p>Flynext is the only way to fully travel on your terms. Whether itâ€™s accessing a remote
-                                destination or taking back control of productivity and flight scheduling</p>
+                            <span class="sub-title"><span>Sobre</span> a ADM</span>
+                            <h2 class="title">Aeroportos de Mo&ccedil;ambique a ligar pessoas, neg&oacute;cios e destinos</h2>
+                            <p>
+                                A ADM gere infraestruturas aeroportu&aacute;rias estrat&eacute;gicas para garantir viagens
+                                seguras, eficientes e confort&aacute;veis. Do atendimento ao passageiro &agrave;s opera&ccedil;&otilde;es
+                                em pista, trabalhamos diariamente para manter Mo&ccedil;ambique conectado ao mundo.
+                            </p>
                             <div class="about-book-area">
                                 <div class="about-book-element">
                                     <img src="@/assets/images/element/element-7.png" alt="element">
                                 </div>
                                 <div class="about-book-left">
-                                    <h3 class="call-title">Call for book an order</h3>
-                                    <span class="call"><a href="tel:8-800-10-500">8-800-10-500</a></span>
+                                    <h3 class="call-title">Linha de informa&ccedil;&atilde;o ao passageiro</h3>
+                                    <span class="call"><a href="tel:+25821465900">+258 21 465 900</a></span>
                                 </div>
                                 <div class="about-book-right">
                                     <router-link to="/service-details" class="btn--base"><i class="icon-btn-icon-v2"></i>
-                                        Book Now</router-link>
+                                        Ver servi&ccedil;os</router-link>
                                 </div>
                             </div>
                         </div>
