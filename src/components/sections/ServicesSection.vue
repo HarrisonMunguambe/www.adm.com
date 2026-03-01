@@ -41,7 +41,7 @@
                 <div class="service-card">
                   <div class="card-icon-wrapper">
                     <div class="card-icon">
-                      <i class="fas fa-tower-broadcast"></i>
+                      <i class="fas fa-broadcast-tower"></i>
                     </div>
                   </div>
                   <h3 class="card-title">Gestão Aeroportuária</h3>
@@ -77,7 +77,7 @@
                 <div class="service-card">
                   <div class="card-icon-wrapper">
                     <div class="card-icon">
-                      <i class="fas fa-shield-halved"></i>
+                      <i class="fas fa-shield-alt"></i>
                     </div>
                   </div>
                   <h3 class="card-title">Segurança</h3>
@@ -118,7 +118,7 @@
                 <div class="service-card">
                   <div class="card-icon-wrapper">
                     <div class="card-icon">
-                      <i class="fas fa-boxes-packing"></i>
+                      <i class="fas fa-boxes"></i>
                     </div>
                   </div>
                   <h3 class="card-title">Carga Aérea</h3>

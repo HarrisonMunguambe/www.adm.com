@@ -16,6 +16,7 @@ import BlogSection from '@/components/sections/BlogSection.vue'
 import AirportsSections from '@/components/sections/AirportsSections.vue'
 import ServicesSection from '@/components/sections/ServicesSection.vue'
 import NewsSection from '@/components/sections/NewsSection.vue'
+import PartnersSection from '@/components/sections/PartnersSection.vue'
 </script>
 
 <template>
@@ -27,15 +28,16 @@ import NewsSection from '@/components/sections/NewsSection.vue'
     <AirportsSections />
     <AboutSection />
     <ServicesSection />
-    <OverviewSection />
     <NewsSection />
-    <FeatureSection />
+    <PartnersSection />
+    <!-- <OverviewSection /> -->
+    <!-- <FeatureSection />
     <StatisticsSection />
     <CharterSection />
     <BookFormSection />
     <PackageSection />
     <ClientSection />
     <BrandSection />
-    <BlogSection />
+    <BlogSection /> -->
   </main>
 </template>
