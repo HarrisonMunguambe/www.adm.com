@@ -14,6 +14,8 @@ import ClientSection from '@/components/sections/ClientSection.vue'
 import BrandSection from '@/components/sections/BrandSection.vue'
 import BlogSection from '@/components/sections/BlogSection.vue'
 import AirportsSections from '@/components/sections/AirportsSections.vue'
+import ServicesSection from '@/components/sections/ServicesSection.vue'
+import NewsSection from '@/components/sections/NewsSection.vue'
 </script>
 
 <template>
@@ -24,7 +26,9 @@ import AirportsSections from '@/components/sections/AirportsSections.vue'
     <CallWidgetSection />
     <AirportsSections />
     <AboutSection />
+    <ServicesSection />
     <OverviewSection />
+    <NewsSection />
     <FeatureSection />
     <StatisticsSection />
     <CharterSection />
