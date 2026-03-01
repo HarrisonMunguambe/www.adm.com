@@ -2,7 +2,7 @@
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       Start News Section - Últimas Notícias
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-  <section class="news-section pb-120">
+  <section id="noticias" class="news-section pb-120">
     <div class="container">
       <!-- Cabeçalho da seção -->
       <div class="section-header text-center" data-aos="fade-up">

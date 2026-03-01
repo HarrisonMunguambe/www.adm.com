@@ -3,6 +3,15 @@ import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
+  scrollBehavior(to) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+      }
+    }
+    return { top: 0, behavior: 'smooth' }
+  },
   routes: [
     {
       path: '/',
@@ -15,6 +24,10 @@ const router = createRouter({
       name: 'about',
       component: () => import('../views/AboutView.vue'),
     },
+    {
+      path: '/noticias',
+      redirect: '/#noticias',
+    },
     // Rotas de compatibilidade para links já usados nos componentes
     {
       path: '/sobre-nos',
@@ -22,11 +35,11 @@ const router = createRouter({
     },
     {
       path: '/contactos',
-      redirect: '/about',
+      redirect: '/#contactos',
     },
     {
       path: '/servicos',
-      redirect: '/',
+      redirect: '/#servicos',
     },
     {
       path: '/voos',
@@ -34,11 +47,12 @@ const router = createRouter({
     },
     {
       path: '/aeroportos',
-      redirect: '/',
+      redirect: '/#aeroportos',
     },
     {
       path: '/aeroportos/:slug',
-      redirect: '/',
+      name: 'airport-detail',
+      component: () => import('../views/AirportDetailView.vue'),
     },
     {
       path: '/:pathMatch(.*)*',

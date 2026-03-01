@@ -2,7 +2,7 @@
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
       Start About Section - Sobre a ADM
   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-  <section class="about-section">
+  <section id="sobre" class="about-section">
     <div class="container">
       <div class="row align-items-center g-5">
         <!-- Coluna da Imagem (esquerda) com Slider Automático -->

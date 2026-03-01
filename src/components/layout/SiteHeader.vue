@@ -8,7 +8,7 @@
         <div class="container-fluid">
           <div class="header-menu-content">
             <nav class="navbar navbar-expand-lg p-0">
-              <router-link class="site-logo site-title" to="/index"
+              <router-link class="site-logo site-title" to="/"
                 ><img
                   class="adm-logo-header"
                   src="@/assets/images/brand/logoADM.jpg"
@@ -27,71 +27,37 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav main-menu ml-auto">
+                  <li><router-link to="/">In&iacute;cio</router-link></li>
+                  <li><router-link :to="{ path: '/', hash: '#sobre' }">Sobre</router-link></li>
                   <li class="menu_has_children">
-                    <a href="#0">In&iacute;cio</a>
+                    <router-link :to="{ path: '/', hash: '#aeroportos' }">Aeroportos</router-link>
                     <ul class="sub-menu">
-                      <li><router-link to="/index">P&aacute;gina Inicial 1</router-link></li>
-                      <li><router-link to="/index-two">P&aacute;gina Inicial 2</router-link></li>
-                      <li><router-link to="/index-dark">P&aacute;gina Inicial Escura</router-link></li>
+                      <li>
+                        <a
+                          href="http://aeroporto-maputo.com/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          >Maputo (MPM)</a
+                        >
+                      </li>
+                      <li><router-link to="/aeroportos/beira">Beira (BEW)</router-link></li>
+                      <li><router-link to="/aeroportos/nampula">Nampula (APL)</router-link></li>
+                      <li><router-link to="/aeroportos/vilankulo">Vilankulo (VNX)</router-link></li>
+                      <li><router-link to="/aeroportos/pemba">Pemba (POL)</router-link></li>
+                      <li><router-link to="/aeroportos/tete">Tete (TET)</router-link></li>
+                      <li><router-link to="/aeroportos/quelimane">Quelimane (UEL)</router-link></li>
+                      <li><router-link to="/aeroportos/chimoio">Chimoio (VPY)</router-link></li>
                     </ul>
                   </li>
-                  <li><router-link to="/about">Sobre N&oacute;s</router-link></li>
-                  <li class="menu_has_children">
-                    <a href="#0">P&aacute;ginas</a>
-                    <ul class="sub-menu">
-                      <li><router-link to="/service">Servi&ccedil;os</router-link></li>
-                      <li><router-link to="/service-details">Detalhes do Servi&ccedil;o</router-link></li>
-                      <li><router-link to="/deals">Ofertas</router-link></li>
-                      <li><router-link to="/deals-details">Detalhes da Oferta</router-link></li>
-                      <li><router-link to="/package">Pacotes</router-link></li>
-                      <li><router-link to="/package-details">Detalhes do Pacote</router-link></li>
-                      <li><router-link to="/course">Nossos Cursos</router-link></li>
-                      <li><router-link to="/course-details">Detalhes do Curso</router-link></li>
-                      <li><router-link to="/team">Nossa Equipa</router-link></li>
-                      <li><router-link to="/team-details">Detalhes da Equipa</router-link></li>
-                      <li><router-link to="/faq">Perguntas Frequentes</router-link></li>
-                      <li><router-link to="/register">Registar</router-link></li>
-                      <li><router-link to="/login">Entrar</router-link></li>
-                      <li><router-link to="/404">P&aacute;gina 404</router-link></li>
-                    </ul>
-                  </li>
-                  <li class="menu_has_children">
-                    <a href="#0">Blog</a>
-                    <ul class="sub-menu">
-                      <li><router-link to="/blog">Blog</router-link></li>
-                      <li><router-link to="/blog-classic">Blog Cl&aacute;ssico</router-link></li>
-                      <li><router-link to="/blog-details">Detalhes do Blog</router-link></li>
-                    </ul>
-                  </li>
-                  <li><router-link to="/faq">FAQ</router-link></li>
-                  <li><router-link to="/contact">Contactos</router-link></li>
+                  <li><router-link :to="{ path: '/', hash: '#servicos' }">Servi&ccedil;os</router-link></li>
+                  <li><router-link :to="{ path: '/', hash: '#noticias' }">Not&iacute;cias</router-link></li>
+                  <li><router-link :to="{ path: '/', hash: '#contactos' }">Contactos</router-link></li>
                 </ul>
                 <div class="header-right">
-                  <div class="search-bar d-none d-lg-block">
-                    <a href="#0"><i class="fas fa-search"></i></a>
-                    <div class="header-top-search-area">
-                      <form
-                        class="header-search-form"
-                        action="https://gamblingscript.com/search"
-                        method="GET"
-                      >
-                        <input
-                          type="search"
-                          name="keyword"
-                          id="header_search"
-                          placeholder="Pesquisar..."
-                        />
-                        <button class="header-search-btn"><i class="fas fa-search"></i></button>
-                      </form>
-                    </div>
-                  </div>
                   <div class="header-action-area">
-                    <router-link to="/service-details" class="action-btn two"
-                      ><i class="icon-btn-icon"></i
-                    ></router-link>
                     <div class="header-action">
-                      <router-link to="/service-details" class="btn--base"
-                        ><i class="icon-btn-icon"></i> Reservar Agora</router-link
+                      <router-link to="/voos" class="btn--base"
+                        ><i class="icon-btn-icon"></i> Consultar Voos</router-link
                       >
                     </div>
                   </div>

@@ -1,8 +1,8 @@
-﻿<template>
+<template>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         Start Footer
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
-  <footer class="footer-section section--bg pt-120">
+  <footer id="contactos" class="footer-section section--bg pt-120">
     <div class="footer-element" data-aos="fade-left" data-aos-duration="1200">
       <img src="@/assets/images/element/element-1.png" alt="elemento" />
     </div>
@@ -12,7 +12,7 @@
           <div class="col-xl-4 col-lg-3 col-md-6 mb-30">
             <div class="footer-widget">
               <div class="footer-logo">
-                <router-link class="site-logo site-title" to="/index"
+                <router-link class="site-logo site-title" to="/"
                   ><img
                     class="adm-logo-footer"
                     src="@/assets/images/brand/logoADM.jpg"
@@ -25,9 +25,24 @@
             <div class="footer-widget">
               <h4 class="widget-title">AEROPORTO DE MAPUTO (MPM)</h4>
               <ul class="footer-list">
-                <li><a href="#0">Cidade de Maputo, Mo&ccedil;ambique</a></li>
-                <li><a href="#0">Terminal Internacional</a></li>
-                <li><a href="#0">Informa&ccedil;&otilde;es de voos e servi&ccedil;os</a></li>
+                <li>
+                  <a
+                    href="http://aeroporto-maputo.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Cidade de Maputo, Mo&ccedil;ambique</a
+                  >
+                </li>
+                <li>
+                  <a href="http://aeroporto-maputo.com/" target="_blank" rel="noopener noreferrer"
+                    >Terminal Internacional</a
+                  >
+                </li>
+                <li>
+                  <a href="http://aeroporto-maputo.com/" target="_blank" rel="noopener noreferrer"
+                    >Informa&ccedil;&otilde;es de voos e servi&ccedil;os</a
+                  >
+                </li>
               </ul>
             </div>
           </div>
@@ -35,9 +50,8 @@
             <div class="footer-widget">
               <h4 class="widget-title">AEROPORTO DA BEIRA (BEW)</h4>
               <ul class="footer-list">
-                <li><a href="#0">Cidade da Beira</a></li>
-
-                <li><a href="#0">Atendimento ao passageiro</a></li>
+                <li><router-link to="/aeroportos/beira">Cidade da Beira</router-link></li>
+                <li><router-link to="/aeroportos/beira">Atendimento ao passageiro</router-link></li>
               </ul>
             </div>
           </div>
@@ -45,9 +59,17 @@
             <div class="footer-widget">
               <h4 class="widget-title">AEROPORTO DE NAMPULA (APL)</h4>
               <ul class="footer-list">
-                <li><a href="#0">Cidade de Nampula, Nampula</a></li>
-                <li><a href="#0">Liga&ccedil;&atilde;o ao norte do pa&iacute;s</a></li>
-                <li><a href="#0">Servi&ccedil;os de apoio ao viajante</a></li>
+                <li><router-link to="/aeroportos/nampula">Cidade de Nampula, Nampula</router-link></li>
+                <li>
+                  <router-link to="/aeroportos/nampula"
+                    >Liga&ccedil;&atilde;o ao norte do pa&iacute;s</router-link
+                  >
+                </li>
+                <li>
+                  <router-link to="/aeroportos/nampula"
+                    >Servi&ccedil;os de apoio ao viajante</router-link
+                  >
+                </li>
               </ul>
             </div>
           </div>
@@ -59,10 +81,21 @@
             <div class="footer-widget">
               <h4 class="title">Aeroportos</h4>
               <ul class="footer-list">
-                <li><a href="#0">Maputo (MPM)</a></li>
-                <li><a href="#0">Beira (BEW)</a></li>
-                <li><a href="#0">Nampula (APL)</a></li>
-                <li><a href="#0">Pemba (POL)</a></li>
+                <li>
+                  <a
+                    href="http://aeroporto-maputo.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    >Maputo (MPM)</a
+                  >
+                </li>
+                <li><router-link to="/aeroportos/beira">Beira (BEW)</router-link></li>
+                <li><router-link to="/aeroportos/nampula">Nampula (APL)</router-link></li>
+                <li><router-link to="/aeroportos/vilankulo">Vilankulo (VNX)</router-link></li>
+                <li><router-link to="/aeroportos/pemba">Pemba (POL)</router-link></li>
+                <li><router-link to="/aeroportos/tete">Tete (TET)</router-link></li>
+                <li><router-link to="/aeroportos/quelimane">Quelimane (UEL)</router-link></li>
+                <li><router-link to="/aeroportos/chimoio">Chimoio (VPY)</router-link></li>
               </ul>
             </div>
           </div>
@@ -70,11 +103,11 @@
             <div class="footer-widget">
               <h4 class="title">Servi&ccedil;os ao Passageiro</h4>
               <ul class="footer-list">
-                <li><a href="#0">Partidas e chegadas</a></li>
-                <li><a href="#0">Informa&ccedil;&atilde;o de bagagem</a></li>
-                <li><a href="#0">Assist&ecirc;ncia especial</a></li>
-                <li><a href="#0">Perguntas frequentes</a></li>
-                <li><a href="#0">Companhias a&eacute;reas</a></li>
+                <li><router-link to="/voos">Partidas e chegadas</router-link></li>
+                <li><router-link to="/servicos">Informa&ccedil;&atilde;o de bagagem</router-link></li>
+                <li><router-link to="/servicos">Assist&ecirc;ncia especial</router-link></li>
+                <li><router-link to="/servicos">Perguntas frequentes</router-link></li>
+                <li><router-link :to="{ path: '/', hash: '#aeroportos' }">Companhias a&eacute;reas</router-link></li>
               </ul>
             </div>
           </div>
@@ -82,11 +115,10 @@
             <div class="footer-widget">
               <h4 class="title">Institucional</h4>
               <ul class="footer-list">
-                <li><a href="#0">Sobre a ADM</a></li>
-                <li><a href="#0">Not&iacute;cias</a></li>
-                <li><a href="#0">Carreiras</a></li>
-                <li><a href="#0">Parcerias</a></li>
-                <li><a href="#0">Transpar&ecirc;ncia</a></li>
+                <li><router-link :to="{ path: '/', hash: '#sobre' }">Sobre a ADM</router-link></li>
+                <li><router-link :to="{ path: '/', hash: '#noticias' }">Not&iacute;cias</router-link></li>
+                <li><router-link :to="{ path: '/', hash: '#servicos' }">Servi&ccedil;os</router-link></li>
+                <li><router-link :to="{ path: '/', hash: '#contactos' }">Contactos</router-link></li>
               </ul>
             </div>
           </div>
@@ -94,9 +126,8 @@
             <div class="footer-widget">
               <h4 class="title">Contacto</h4>
               <p>
-                Receba atualiza&ccedil;&otilde;es sobre opera&ccedil;&otilde;es
-                aeroportu&aacute;rias, hor&aacute;rios e servi&ccedil;os dos Aeroportos de
-                Mo&ccedil;ambique.
+                Receba atualiza&ccedil;&otilde;es sobre opera&ccedil;&otilde;es aeroportu&aacute;rias,
+                hor&aacute;rios e servi&ccedil;os dos Aeroportos de Mo&ccedil;ambique.
               </p>
               <form class="subscribe-form">
                 <label class="subscribe-icon"><i class="las la-envelope"></i></label>
@@ -113,16 +144,36 @@
         <div class="social-area">
           <ul class="footer-social">
             <li>
-              <a href="#0"><i class="fab fa-facebook-f"></i></a>
+              <a
+                href="https://www.facebook.com/search/top?q=aeroportos%20de%20mo%C3%A7ambique"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-facebook-f"></i
+              ></a>
             </li>
             <li>
-              <a href="#0" class="active"><i class="fab fa-twitter"></i></a>
+              <a
+                href="https://youtube.com/aeroportosmocambique"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-youtube"></i
+              ></a>
             </li>
             <li>
-              <a href="#0"><i class="fab fa-youtube"></i></a>
+              <a
+                href="https://instagram.com/aeroportosmocambique"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-instagram"></i
+              ></a>
             </li>
             <li>
-              <a href="#0"><i class="fab fa-instagram"></i></a>
+              <a
+                href="https://linkedin.com/company/aeroportos-mocambique"
+                target="_blank"
+                rel="noopener noreferrer"
+                ><i class="fab fa-linkedin-in"></i
+              ></a>
             </li>
           </ul>
         </div>

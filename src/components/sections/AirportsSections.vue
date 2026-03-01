@@ -1,5 +1,5 @@
 <template>
-  <section class="airports-map-section">
+  <section id="aeroportos" class="airports-map-section">
     <div class="container">
       <!-- Cabeçalho da seção -->
       <div class="section-header text-center" data-aos="fade-up">
