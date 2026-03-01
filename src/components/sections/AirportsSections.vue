@@ -1,5 +1,5 @@
 <template>
-  <section class="airports-map-section" ref="sectionRef">
+  <section class="airports-map-section">
     <div class="container">
       <!-- Cabeçalho da seção -->
       <div class="section-header text-center" data-aos="fade-up">
@@ -33,16 +33,43 @@
         </div>
       </div>
 
-      <!-- Estatísticas Rápidas com efeito de contador -->
-      <div class="network-stats" ref="statsRef">
-        <div class="stat-item" v-for="stat in stats" :key="stat.label">
-          <div class="stat-number">
-            <span class="counter">{{ animatedStats[stat.label] || stat.value }}</span>
-            <span v-if="stat.suffix" class="stat-suffix">{{ stat.suffix }}</span>
-          </div>
-          <div class="stat-label">{{ stat.label }}</div>
+      <!-- Estatísticas Rápidas - Atualizadas -->
+      <div class="network-stats">
+        <div class="stat-item">
+          <div class="stat-number">8</div>
+          <div class="stat-label">Aeroportos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">7</div>
+          <div class="stat-label">Províncias</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Destinos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5.2M</div>
+          <div class="stat-label">Passageiros</div>
         </div>
       </div>
+
+      <!-- Lista de Aeroportos - Única categoria -->
+      <!-- <div class="airports-grid">
+        <h3 class="grid-title">Aeroportos de Moçambique</h3>
+        <div class="airport-chips">
+          <div
+            v-for="airport in mozambiqueAirports"
+            :key="airport.code"
+            class="airport-chip int-chip"
+            @mouseenter="highlightAirport(airport)"
+            @mouseleave="unhighlightAirport(airport)"
+            @click="flyToAirport(airport)"
+          >
+            <span class="chip-code">{{ airport.code }}</span>
+            <span class="chip-name">{{ airport.name }}</span>
+          </div>
+        </div>
+      </div> -->
     </div>
   </section>
 </template>
@@ -59,68 +86,10 @@ const MAPTILER_API_KEY = import.meta.env.VITE_MAPTILER_API_KEY || ''
 const INITIAL_CENTER = [37.2, -18.8]
 const INITIAL_ZOOM = 4.6
 
-// Referências
+// Referência ao container do mapa
 const mapContainer = ref(null)
-const sectionRef = ref(null)
-const statsRef = ref(null)
 let map = null
 let markers = []
-let observer = null
-
-// ==================== ESTATÍSTICAS COM CONTADOR ====================
-const stats = [
-  { label: 'Aeroportos', value: 8, suffix: '' },
-  { label: 'Províncias', value: 7, suffix: '' },
-  { label: 'Destinos', value: 15, suffix: '+' },
-  { label: 'Passageiros', value: 5.2, suffix: 'M' },
-]
-
-const animatedStats = ref({})
-
-// Função para animar os números
-const animateNumbers = () => {
-  stats.forEach((stat) => {
-    const target = stat.value
-    const duration = 2000 // 2 segundos
-    const stepTime = 20 // atualizar a cada 20ms
-    const steps = duration / stepTime
-    const increment = target / steps
-
-    let current = 0
-    const timer = setInterval(() => {
-      current += increment
-      if (current >= target) {
-        animatedStats.value[stat.label] = target + (stat.suffix ? '' : '')
-        clearInterval(timer)
-      } else {
-        if (stat.label === 'Passageiros') {
-          animatedStats.value[stat.label] = current.toFixed(1)
-        } else {
-          animatedStats.value[stat.label] = Math.floor(current)
-        }
-      }
-    }, stepTime)
-  })
-}
-
-// Configurar Intersection Observer
-const setupObserver = () => {
-  observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          animateNumbers()
-          observer.unobserve(entry.target) // Parar de observar após animar
-        }
-      })
-    },
-    { threshold: 0.3 },
-  ) // Ativa quando 30% da seção está visível
-
-  if (statsRef.value) {
-    observer.observe(statsRef.value)
-  }
-}
 
 // ==================== DADOS CORRETOS DOS 8 AEROPORTOS ====================
 const mozambiqueAirports = [
@@ -221,9 +190,6 @@ onMounted(() => {
   map.on('load', () => {
     addMarkersToMap()
   })
-
-  // Configurar observer para animação das estatísticas
-  setupObserver()
 })
 
 // Adicionar marcadores ao mapa
@@ -318,9 +284,6 @@ onUnmounted(() => {
   if (map) {
     map.remove()
   }
-  if (observer) {
-    observer.disconnect()
-  }
 })
 </script>
 
@@ -392,7 +355,7 @@ onUnmounted(() => {
 .map-legend {
   position: absolute;
   bottom: 10px;
-  left: 10px;
+  left: 11px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(5px);
   padding: 12px 20px;
@@ -422,7 +385,7 @@ onUnmounted(() => {
   border: 2px solid #030140;
 }
 
-/* Estatísticas com efeito de contador */
+/* Estatísticas atualizadas */
 .network-stats {
   display: flex;
   justify-content: space-around;
@@ -440,27 +403,10 @@ onUnmounted(() => {
 }
 
 .stat-number {
-  font-size: 2.5rem;
+  font-size: 2.2rem;
   font-weight: 800;
   color: #030140;
   line-height: 1.2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2px;
-}
-
-.counter {
-  display: inline-block;
-  min-width: 60px;
-  text-align: right;
-}
-
-.stat-suffix {
-  color: #f2e416;
-  font-size: 2rem;
-  font-weight: 700;
-  margin-left: 2px;
 }
 
 .stat-label {
@@ -468,24 +414,55 @@ onUnmounted(() => {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-top: 5px;
 }
 
-/* Animação suave para o contador */
-@keyframes countPulse {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-  100% {
-    transform: scale(1);
-  }
+/* Grid de Aeroportos */
+.airports-grid {
+  margin-top: 30px;
 }
 
-.stat-number .counter {
-  animation: countPulse 0.3s ease-out;
+.grid-title {
+  color: #030140;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  border-left: 4px solid #f2e416;
+  padding-left: 15px;
+}
+
+.airport-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.airport-chip {
+  padding: 10px 20px;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(3, 1, 64, 0.05);
+  background: rgba(242, 228, 22, 0.1);
+  border: 1px solid #f2e416;
+}
+
+.airport-chip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(242, 228, 22, 0.2);
+}
+
+.chip-code {
+  font-weight: 800;
+  color: #030140;
+  font-size: 0.9rem;
+}
+
+.chip-name {
+  color: #4a5568;
+  font-size: 0.9rem;
 }
 
 /* Popup personalizado */
@@ -555,7 +532,6 @@ onUnmounted(() => {
   .network-stats {
     flex-wrap: wrap;
     gap: 15px;
-    padding: 20px;
   }
 
   .stat-item {
@@ -563,11 +539,7 @@ onUnmounted(() => {
   }
 
   .stat-number {
-    font-size: 2rem;
-  }
-
-  .stat-suffix {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -582,15 +554,7 @@ onUnmounted(() => {
   }
 
   .stat-number {
-    font-size: 1.6rem;
-  }
-
-  .stat-suffix {
-    font-size: 1.3rem;
-  }
-
-  .counter {
-    min-width: 40px;
+    font-size: 1.5rem;
   }
 }
 </style>
