@@ -20,43 +20,32 @@
 
             <!-- Título direto -->
             <h2 class="title">
-              Acompanhe as chegadas e partidas<br />
-              <span class="text-highlight">em tempo real</span>
+              Acompanhe as Chegadas e Partidas
+              <span class="text-highlight">em Tempo Real</span>
             </h2>
 
             <!-- Descrição clara e objetiva -->
             <p class="flight-description">
-              Consulte a situação atual dos voos nos aeroportos de Moçambique. Utilize o código IATA
-              do aeroporto (MPM, BEW, APL, POL, VNX, TET, UEL, VPY) para filtrar os resultados e
-              planeie a sua viagem com antecedência.
+              Consulte a situação actual dos voos nos aeroportos de Moçambique. Utilize o código
+              IATA e a referência do voo a partir ou aterrar em um dos aeroportos para verificar
+              infomacaões detalhadas sobre horários, status e portões de embarque.
+
+              <!-- Caixa de pesquisa principal -->
             </p>
 
-            <!-- Caixa de pesquisa principal -->
             <div class="search-container">
               <div class="search-box">
                 <i class="fas fa-search search-icon"></i>
                 <input
                   type="text"
                   v-model="airportCode"
-                  placeholder="Digite o código do aeroporto (ex: MPM)"
-                  maxlength="3"
+                  placeholder="Digite a referência do voo (ex:TM 100)"
                   @keyup.enter="searchFlights"
                 />
                 <button class="search-btn" @click="searchFlights">Pesquisar voos</button>
               </div>
 
               <!-- Códigos sugeridos -->
-              <div class="code-suggestions">
-                <span class="suggestions-label">Códigos:</span>
-                <button
-                  v-for="code in suggestedCodes"
-                  :key="code"
-                  class="code-chip"
-                  @click="selectCode(code)"
-                >
-                  {{ code }}
-                </button>
-              </div>
             </div>
 
             <!-- Call to action única -->
@@ -183,8 +172,6 @@ const searchFlights = () => {
 
 .text-highlight {
   color: #f2e416;
-  position: relative;
-  display: inline-block;
 }
 
 .text-highlight::after {
