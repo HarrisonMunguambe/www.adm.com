@@ -1,5 +1,5 @@
 <template>
-  <section class="airports-map-section">
+  <section class="airports-map-section" ref="sectionRef">
     <div class="container">
       <!-- Cabeçalho da seção -->
       <div class="section-header text-center" data-aos="fade-up">
@@ -24,88 +24,23 @@
           style="height: 600px; width: 100%; border-radius: 20px"
         ></div>
 
-        <!-- Legenda -->
+        <!-- Legenda simplificada -->
         <div class="map-legend">
           <div class="legend-item">
             <span class="legend-dot int-dot"></span>
-            <span>Aeroportos Internacionais (7)</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-dot reg-dot"></span>
-            <span>Aeródromos Regionais (12)</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-dot domestic-dot"></span>
-            <span>Aeroportos Domésticos (7)</span>
+            <span>Aeroportos Internacionais (8)</span>
           </div>
         </div>
       </div>
 
-      <!-- Estatísticas Rápidas -->
-      <div class="network-stats">
-        <div class="stat-item">
-          <div class="stat-number">7</div>
-          <div class="stat-label">Internacionais</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">12</div>
-          <div class="stat-label">Regionais</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">7</div>
-          <div class="stat-label">Domésticos</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-number">26</div>
-          <div class="stat-label">Total</div>
-        </div>
-      </div>
-
-      <!-- Lista de Aeroportos por Categoria -->
-      <div class="airports-grid">
-        <h3 class="grid-title">Aeroportos Internacionais</h3>
-        <div class="airport-chips">
-          <div
-            v-for="airport in internationalAirports"
-            :key="airport.code"
-            class="airport-chip int-chip"
-            @mouseenter="highlightAirport(airport)"
-            @mouseleave="unhighlightAirport(airport)"
-            @click="flyToAirport(airport)"
-          >
-            <span class="chip-code">{{ airport.code }}</span>
-            <span class="chip-name">{{ airport.name }}</span>
+      <!-- Estatísticas Rápidas com efeito de contador -->
+      <div class="network-stats" ref="statsRef">
+        <div class="stat-item" v-for="stat in stats" :key="stat.label">
+          <div class="stat-number">
+            <span class="counter">{{ animatedStats[stat.label] || stat.value }}</span>
+            <span v-if="stat.suffix" class="stat-suffix">{{ stat.suffix }}</span>
           </div>
-        </div>
-
-        <h3 class="grid-title mt-4">Aeródromos Regionais</h3>
-        <div class="airport-chips">
-          <div
-            v-for="airport in regionalAirports"
-            :key="airport.code"
-            class="airport-chip reg-chip"
-            @mouseenter="highlightAirport(airport)"
-            @mouseleave="unhighlightAirport(airport)"
-            @click="flyToAirport(airport)"
-          >
-            <span class="chip-code">{{ airport.code }}</span>
-            <span class="chip-name">{{ airport.name }}</span>
-          </div>
-        </div>
-
-        <h3 class="grid-title mt-4">Aeroportos Domésticos</h3>
-        <div class="airport-chips">
-          <div
-            v-for="airport in domesticAirports"
-            :key="airport.code"
-            class="airport-chip domestic-chip"
-            @mouseenter="highlightAirport(airport)"
-            @mouseleave="unhighlightAirport(airport)"
-            @click="flyToAirport(airport)"
-          >
-            <span class="chip-code">{{ airport.code }}</span>
-            <span class="chip-name">{{ airport.name }}</span>
-          </div>
+          <div class="stat-label">{{ stat.label }}</div>
         </div>
       </div>
     </div>
@@ -117,26 +52,84 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import * as maptilersdk from '@maptiler/sdk'
 import '@maptiler/sdk/dist/maptiler-sdk.css'
 
-// Configuração da API Key
-const MAPTILER_API_KEY = 'HruxgdWgk4lSCfSm1Qd4'
+// Configuração da API Key via ambiente (.env)
+const MAPTILER_API_KEY = import.meta.env.VITE_MAPTILER_API_KEY || ''
 
-// Referência ao container do mapa
+// Vista inicial para enquadramento semelhante ao exemplo visual
+const INITIAL_CENTER = [37.2, -18.8]
+const INITIAL_ZOOM = 4.6
+
+// Referências
 const mapContainer = ref(null)
+const sectionRef = ref(null)
+const statsRef = ref(null)
 let map = null
 let markers = []
+let observer = null
 
-// ==================== DADOS DOS AEROPORTOS ====================
-// Coordenadas reais obtidas do Google Maps / OpenStreetMap
+// ==================== ESTATÍSTICAS COM CONTADOR ====================
+const stats = [
+  { label: 'Aeroportos', value: 8, suffix: '' },
+  { label: 'Províncias', value: 7, suffix: '' },
+  { label: 'Destinos', value: 15, suffix: '+' },
+  { label: 'Passageiros', value: 5.2, suffix: 'M' },
+]
 
-// Aeroportos Internacionais (7)
-const internationalAirports = [
+const animatedStats = ref({})
+
+// Função para animar os números
+const animateNumbers = () => {
+  stats.forEach((stat) => {
+    const target = stat.value
+    const duration = 2000 // 2 segundos
+    const stepTime = 20 // atualizar a cada 20ms
+    const steps = duration / stepTime
+    const increment = target / steps
+
+    let current = 0
+    const timer = setInterval(() => {
+      current += increment
+      if (current >= target) {
+        animatedStats.value[stat.label] = target + (stat.suffix ? '' : '')
+        clearInterval(timer)
+      } else {
+        if (stat.label === 'Passageiros') {
+          animatedStats.value[stat.label] = current.toFixed(1)
+        } else {
+          animatedStats.value[stat.label] = Math.floor(current)
+        }
+      }
+    }, stepTime)
+  })
+}
+
+// Configurar Intersection Observer
+const setupObserver = () => {
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          animateNumbers()
+          observer.unobserve(entry.target) // Parar de observar após animar
+        }
+      })
+    },
+    { threshold: 0.3 },
+  ) // Ativa quando 30% da seção está visível
+
+  if (statsRef.value) {
+    observer.observe(statsRef.value)
+  }
+}
+
+// ==================== DADOS CORRETOS DOS 8 AEROPORTOS ====================
+const mozambiqueAirports = [
   {
     code: 'MPM',
     name: 'Aeroporto Internacional de Maputo',
     location: 'Maputo',
     lat: -25.9692,
     lng: 32.5732,
-    destinations: '15 destinos',
     type: 'int',
     link: '/aeroportos/maputo',
   },
@@ -146,19 +139,26 @@ const internationalAirports = [
     location: 'Beira',
     lat: -19.8004,
     lng: 34.8871,
-    destinations: '8 destinos',
     type: 'int',
     link: '/aeroportos/beira',
   },
   {
     code: 'APL',
-    name: 'Aeroporto de Nampula',
+    name: 'Aeroporto Internacional de Nampula',
     location: 'Nampula',
     lat: -15.1264,
     lng: 39.2648,
-    destinations: '6 destinos',
     type: 'int',
     link: '/aeroportos/nampula',
+  },
+  {
+    code: 'VNX',
+    name: 'Aeroporto Internacional de Vilankulo',
+    location: 'Vilankulo',
+    lat: -21.9922,
+    lng: 35.3162,
+    type: 'int',
+    link: '/aeroportos/vilankulo',
   },
   {
     code: 'POL',
@@ -166,29 +166,8 @@ const internationalAirports = [
     location: 'Pemba',
     lat: -13.0237,
     lng: 40.5177,
-    destinations: '5 destinos',
     type: 'int',
     link: '/aeroportos/pemba',
-  },
-  {
-    code: 'VNX',
-    name: 'Aeroporto de Vilankulo',
-    location: 'Vilankulo',
-    lat: -21.9922,
-    lng: 35.3162,
-    destinations: '4 destinos',
-    type: 'int',
-    link: '/aeroportos/vilankulo',
-  },
-  {
-    code: 'INH',
-    name: 'Aeroporto de Inhambane',
-    location: 'Inhambane',
-    lat: -23.865,
-    lng: 35.3833,
-    destinations: '3 destinos',
-    type: 'int',
-    link: '/aeroportos/inhambane',
   },
   {
     code: 'TET',
@@ -196,193 +175,28 @@ const internationalAirports = [
     location: 'Tete',
     lat: -16.1643,
     lng: 33.5913,
-    destinations: '4 destinos',
     type: 'int',
     link: '/aeroportos/tete',
   },
-]
-
-// Aeródromos Regionais (12)
-const regionalAirports = [
   {
     code: 'UEL',
     name: 'Aeroporto de Quelimane',
     location: 'Quelimane',
     lat: -17.8555,
     lng: 36.8691,
-    type: 'reg',
+    type: 'int',
     link: '/aeroportos/quelimane',
   },
   {
-    code: 'VJB',
-    name: 'Aeroporto de Xai-Xai',
-    location: 'Xai-Xai',
-    lat: -25.0438,
-    lng: 33.6443,
-    type: 'reg',
-    link: '/aeroportos/xai-xai',
-  },
-  {
-    code: 'MNC',
-    name: 'Aeroporto de Lichinga',
-    location: 'Lichinga',
-    lat: -13.274,
-    lng: 35.2663,
-    type: 'reg',
-    link: '/aeroportos/lichinga',
-  },
-  {
-    code: 'ANO',
-    name: 'Aeroporto de Angoche',
-    location: 'Angoche',
-    lat: -16.1833,
-    lng: 39.9167,
-    type: 'reg',
-    link: '/aeroportos/angoche',
-  },
-  {
-    code: 'IBO',
-    name: 'Aeroporto de Ibo',
-    location: 'Ibo',
-    lat: -12.35,
-    lng: 40.5833,
-    type: 'reg',
-    link: '/aeroportos/ibo',
-  },
-  {
-    code: 'PEX',
-    name: 'Aeroporto de Pemba (Antigo)',
-    location: 'Pemba',
-    lat: -13.02,
-    lng: 40.52,
-    type: 'reg',
-    link: '/aeroportos/pemba-antigo',
-  },
-  {
-    code: 'MZQ',
-    name: 'Aeroporto de Mueda',
-    location: 'Mueda',
-    lat: -11.6667,
-    lng: 39.5667,
-    type: 'reg',
-    link: '/aeroportos/mueda',
-  },
-  {
-    code: 'MGW',
-    name: 'Aeroporto de Montepuez',
-    location: 'Montepuez',
-    lat: -13.1167,
-    lng: 38.9833,
-    type: 'reg',
-    link: '/aeroportos/montepuez',
-  },
-  {
-    code: 'VXC',
-    name: 'Aeroporto de Lichinga (antigo)',
-    location: 'Lichinga',
-    lat: -13.3,
-    lng: 35.2333,
-    type: 'reg',
-    link: '/aeroportos/lichinga-antigo',
-  },
-  {
-    code: 'MUD',
-    name: 'Aeroporto de Muidumbe',
-    location: 'Muidumbe',
-    lat: -11.8333,
-    lng: 39.7667,
-    type: 'reg',
-    link: '/aeroportos/muidumbe',
-  },
-  {
-    code: 'MPA',
-    name: 'Aeroporto de Mocimboa da Praia',
-    location: 'Mocimboa da Praia',
-    lat: -11.35,
-    lng: 40.35,
-    type: 'reg',
-    link: '/aeroportos/mocimboa',
-  },
-  {
-    code: 'PTW',
-    name: 'Aeroporto de Palma',
-    location: 'Palma',
-    lat: -10.7833,
-    lng: 40.5,
-    type: 'reg',
-    link: '/aeroportos/palma',
+    code: 'VPY',
+    name: 'Aeroporto de Chimoio',
+    location: 'Chimoio',
+    lat: -19.1513,
+    lng: 33.429,
+    type: 'int',
+    link: '/aeroportos/chimoio',
   },
 ]
-
-// Aeroportos Domésticos (7)
-const domesticAirports = [
-  {
-    code: 'JCA',
-    name: 'Aeroporto de João Correia',
-    location: 'João Correia',
-    lat: -24.7333,
-    lng: 34.8833,
-    type: 'dom',
-    link: '/aeroportos/joao-correia',
-  },
-  {
-    code: 'MTA',
-    name: 'Aeroporto de Marrupa',
-    location: 'Marrupa',
-    lat: -13.2167,
-    lng: 37.55,
-    type: 'dom',
-    link: '/aeroportos/marrupa',
-  },
-  {
-    code: 'MZ',
-    name: 'Aeroporto de Mocuba',
-    location: 'Mocuba',
-    lat: -16.85,
-    lng: 38.25,
-    type: 'dom',
-    link: '/aeroportos/mocuba',
-  },
-  {
-    code: 'MMO',
-    name: 'Aeroporto de Marromeu',
-    location: 'Marromeu',
-    lat: -18.2833,
-    lng: 35.95,
-    type: 'dom',
-    link: '/aeroportos/marromeu',
-  },
-  {
-    code: 'MPM',
-    name: 'Aeroporto de Mapulanguene',
-    location: 'Mapulanguene',
-    lat: -24.15,
-    lng: 32.05,
-    type: 'dom',
-    link: '/aeroportos/mapulanguene',
-  },
-  {
-    code: 'MZ',
-    name: 'Aeroporto de Massangena',
-    location: 'Massangena',
-    lat: -21.55,
-    lng: 32.9667,
-    type: 'dom',
-    link: '/aeroportos/massangena',
-  },
-  {
-    code: 'ZSE',
-    name: 'Aeroporto de Zumbo',
-    location: 'Zumbo',
-    lat: -15.6167,
-    lng: 30.45,
-    type: 'dom',
-    link: '/aeroportos/zumbo',
-  },
-]
-
-// Combinar todos para facilitar a busca
-const allAirports = [...internationalAirports, ...regionalAirports, ...domesticAirports]
 
 // ==================== FUNÇÕES DO MAPA ====================
 onMounted(() => {
@@ -394,66 +208,64 @@ onMounted(() => {
   // Criar mapa com estilo profissional
   map = new maptilersdk.Map({
     container: mapContainer.value,
-    style: maptilersdk.MapStyle.STREETS, // Podes escolher: OUTDOOR, SATELLITE, HYBRID, etc.
-    center: [35.5296, -18.6657], // [lng, lat] - centro de Moçambique
-    zoom: 5.5,
+    style: maptilersdk.MapStyle.STREETS,
+    center: INITIAL_CENTER,
+    zoom: INITIAL_ZOOM,
     navigationControl: true,
     geolocationControl: false,
     terrainControl: false,
   })
 
-  // Adicionar controlos de navegação [citation:2]
   map.addControl(new maptilersdk.NavigationControl(), 'top-right')
 
-  // Aguardar o mapa carregar antes de adicionar marcadores
   map.on('load', () => {
     addMarkersToMap()
   })
+
+  // Configurar observer para animação das estatísticas
+  setupObserver()
 })
 
-// Adicionar todos os marcadores ao mapa
+// Adicionar marcadores ao mapa
 const addMarkersToMap = () => {
   if (!map) return
 
-  // Limpar marcadores anteriores se existirem
   markers.forEach((marker) => marker.remove())
   markers = []
 
-  // Criar marcador para cada aeroporto
-  allAirports.forEach((airport) => {
-    // Criar elemento HTML personalizado para o marcador [citation:3]
+  mozambiqueAirports.forEach((airport) => {
+    // Criar elemento HTML para o marcador
     const markerElement = document.createElement('div')
-    markerElement.className = `custom-marker marker-${airport.type}`
-    markerElement.innerHTML = airport.type === 'int' ? '✈️' : '⬤'
+    markerElement.className = 'custom-marker'
+    markerElement.innerHTML = '✈️'
     markerElement.style.cssText = `
-      width: ${airport.type === 'int' ? '40px' : '32px'};
-      height: ${airport.type === 'int' ? '40px' : '32px'};
-      background: ${airport.type === 'int' ? '#f2e416' : airport.type === 'reg' ? '#030140' : '#4a5568'};
-      border: 3px solid ${airport.type === 'int' ? '#030140' : '#f2e416'};
+      width: 40px;
+      height: 40px;
+      background: #f2e416;
+      border: 3px solid #030140;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      color: ${airport.type === 'int' ? '#030140' : 'white'};
-      font-size: ${airport.type === 'int' ? '18px' : '16px'};
+      color: #030140;
+      font-size: 18px;
       font-weight: bold;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
       cursor: pointer;
       transition: transform 0.2s;
     `
 
-    // Criar popup com informações do aeroporto
+    // Criar popup
     const popup = new maptilersdk.Popup({ offset: 25 }).setHTML(`
-        <div class="custom-popup">
-          <h4>${airport.name}</h4>
-          <p><strong>Código:</strong> ${airport.code}</p>
-          <p><strong>Localização:</strong> ${airport.location}</p>
-          ${airport.destinations ? `<p><strong>Destinos:</strong> ${airport.destinations}</p>` : ''}
-          <a href="${airport.link}" class="popup-link">Ver detalhes →</a>
-        </div>
-      `)
+      <div class="custom-popup">
+        <h4>${airport.name}</h4>
+        <p><strong>Código IATA:</strong> ${airport.code}</p>
+        <p><strong>Localização:</strong> ${airport.location}</p>
+        <a href="${airport.link}" class="popup-link">Ver detalhes →</a>
+      </div>
+    `)
 
-    // Criar e adicionar marcador
+    // Adicionar marcador
     const marker = new maptilersdk.Marker({ element: markerElement })
       .setLngLat([airport.lng, airport.lat])
       .setPopup(popup)
@@ -468,7 +280,6 @@ const highlightAirport = (airport) => {
   const found = markers.find((m) => m.airport.code === airport.code)
   if (found) {
     found.marker.togglePopup()
-    // Efeito visual no marcador
     const element = found.marker.getElement()
     element.style.transform = 'scale(1.2)'
     element.style.zIndex = '1000'
@@ -496,17 +307,19 @@ const flyToAirport = (airport) => {
     easing: (t) => t,
   })
 
-  // Abrir popup após voar
   setTimeout(() => {
     const found = markers.find((m) => m.airport.code === airport.code)
     if (found) found.marker.togglePopup()
   }, 1500)
 }
 
-// Limpar recursos ao desmontar
+// Limpar recursos
 onUnmounted(() => {
   if (map) {
     map.remove()
+  }
+  if (observer) {
+    observer.disconnect()
   }
 })
 </script>
@@ -575,15 +388,15 @@ onUnmounted(() => {
   height: 600px;
 }
 
-/* Legenda */
+/* Legenda simplificada */
 .map-legend {
   position: absolute;
-  bottom: 20px;
-  right: 20px;
+  bottom: 10px;
+  left: 10px;
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(5px);
-  padding: 15px;
-  border-radius: 12px;
+  padding: 12px 20px;
+  border-radius: 50px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(242, 228, 22, 0.2);
   z-index: 1000;
@@ -593,13 +406,8 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 8px;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #030140;
-}
-
-.legend-item:last-child {
-  margin-bottom: 0;
 }
 
 .legend-dot {
@@ -614,17 +422,7 @@ onUnmounted(() => {
   border: 2px solid #030140;
 }
 
-.reg-dot {
-  background: #030140;
-  border: 2px solid #f2e416;
-}
-
-.domestic-dot {
-  background: #4a5568;
-  border: 2px solid #f2e416;
-}
-
-/* Estatísticas */
+/* Estatísticas com efeito de contador */
 .network-stats {
   display: flex;
   justify-content: space-around;
@@ -642,10 +440,27 @@ onUnmounted(() => {
 }
 
 .stat-number {
-  font-size: 2.2rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: #030140;
   line-height: 1.2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.counter {
+  display: inline-block;
+  min-width: 60px;
+  text-align: right;
+}
+
+.stat-suffix {
+  color: #f2e416;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-left: 2px;
 }
 
 .stat-label {
@@ -653,72 +468,24 @@ onUnmounted(() => {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  margin-top: 5px;
 }
 
-/* Grid de Aeroportos */
-.airports-grid {
-  margin-top: 30px;
+/* Animação suave para o contador */
+@keyframes countPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
-.grid-title {
-  color: #030140;
-  font-size: 1.2rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-  border-left: 4px solid #f2e416;
-  padding-left: 15px;
-}
-
-.airport-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.airport-chip {
-  padding: 8px 16px;
-  border-radius: 50px;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(3, 1, 64, 0.05);
-}
-
-.airport-chip:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(3, 1, 64, 0.1);
-}
-
-.int-chip {
-  background: rgba(242, 228, 22, 0.1);
-  border: 1px solid #f2e416;
-}
-
-.reg-chip {
-  background: rgba(3, 1, 64, 0.05);
-  border: 1px solid #030140;
-}
-
-.domestic-chip {
-  background: rgba(74, 85, 104, 0.1);
-  border: 1px solid #4a5568;
-}
-
-.chip-code {
-  font-weight: 800;
-  color: #030140;
-  font-size: 0.85rem;
-}
-
-.chip-name {
-  color: #4a5568;
-  font-size: 0.85rem;
-}
-
-.mt-4 {
-  margin-top: 20px;
+.stat-number .counter {
+  animation: countPulse 0.3s ease-out;
 }
 
 /* Popup personalizado */
@@ -782,11 +549,13 @@ onUnmounted(() => {
     bottom: auto;
     right: auto;
     margin: 20px 0 0;
+    display: inline-block;
   }
 
   .network-stats {
     flex-wrap: wrap;
     gap: 15px;
+    padding: 20px;
   }
 
   .stat-item {
@@ -794,7 +563,11 @@ onUnmounted(() => {
   }
 
   .stat-number {
-    font-size: 1.8rem;
+    font-size: 2rem;
+  }
+
+  .stat-suffix {
+    font-size: 1.6rem;
   }
 }
 
@@ -804,16 +577,20 @@ onUnmounted(() => {
   }
 
   .airport-chip {
-    padding: 6px 12px;
+    padding: 8px 16px;
     font-size: 0.8rem;
   }
 
   .stat-number {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
 
-  .stat-label {
-    font-size: 0.8rem;
+  .stat-suffix {
+    font-size: 1.3rem;
+  }
+
+  .counter {
+    min-width: 40px;
   }
 }
 </style>
