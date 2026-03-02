@@ -81,6 +81,12 @@
   border-radius: 899px;
 }
 
+@media only screen and (min-width: 992px) {
+  .header-right {
+    margin-left: 18px;
+  }
+}
+
 @media only screen and (max-width: 991px) {
   .adm-logo-header {
     width: 120px;
