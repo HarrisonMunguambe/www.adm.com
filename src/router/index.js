@@ -1,5 +1,6 @@
 ﻿import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import FlightSearchView from '@/components/sections/FlightSearchView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -42,10 +43,6 @@ const router = createRouter({
       redirect: '/#servicos',
     },
     {
-      path: '/voos',
-      redirect: '/',
-    },
-    {
       path: '/aeroportos',
       redirect: '/#aeroportos',
     },
@@ -57,6 +54,11 @@ const router = createRouter({
     {
       path: '/:pathMatch(.*)*',
       redirect: '/',
+    },
+    {
+      path: '/voos',
+      name: 'flight-search',
+      component: FlightSearchView,
     },
   ],
 })

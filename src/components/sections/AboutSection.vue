@@ -66,7 +66,7 @@
             <div class="flight-cta">
               <router-link to="/voos" class="btn--base">
                 <i class="fas fa-plane-departure mr-2"></i>
-                Pesquisa por referência do Voo
+                Pesquisa por Referência do Voo
                 <i class="fas fa-arrow-right ml-2"></i>
               </router-link>
             </div>
