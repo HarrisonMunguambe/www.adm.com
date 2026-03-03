@@ -1,37 +1,64 @@
 <template>
   <div class="about-page">
     <!-- Banner da Página -->
-    <section
-      class="page-banner bg-overlay-base ptb-120 bg_img"
-      :style="{
-        backgroundImage: `url('@/assets/images/ADM/616176225_1514855020649898_8839484872168926276_n copy.jpg.jpeg')`,
-      }"
-    >
+    <section class="hero-banner">
+      <div class="banner-bg" :style="{ backgroundImage: `url(${bannerImage})` }"></div>
+      <div class="banner-overlay"></div>
+
       <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-8">
-            <div class="banner-content">
-              <span class="sub-title">
-                <i class="fas fa-building mr-2"></i>
-                SOBRE NÓS
-              </span>
+        <div class="row align-items-center min-vh-100">
+          <div class="col-lg-8 col-xl-7">
+            <div class="banner-content" data-aos="fade-up" data-aos-duration="1200">
+              <!-- Badge institucional -->
+              <div class="badge-wrapper">
+                <span class="badge-line"></span>
+                <span class="badge-text">AEROPORTOS DE MOÇAMBIQUE</span>
+                <span class="badge-line"></span>
+              </div>
+
+              <!-- Título principal -->
               <h1 class="banner-title">
-                Conheça a <span class="text-highlight">Aeroportos de Moçambique</span>
+                <span class="title-line text-white">Conectando</span>
+                <span class="title-line highlight">Moçambique ao Mundo</span>
               </h1>
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><router-link to="/">Home</router-link></li>
-                  <li class="breadcrumb-item active" aria-current="page">Sobre Nós</li>
-                </ol>
-              </nav>
+
+              <!-- Descrição -->
+              <p class="banner-description">
+                Gerimos a maior rede aeroportuária do país com orgulho nacional. Mais de 70 anos de
+                história ligando Moçambique ao mundo, com padrões internacionais de qualidade e a
+                hospitalidade que nos caracteriza.
+              </p>
+
+              <!-- Botões de ação -->
+              <div class="banner-actions">
+                <router-link to="/sobre-nos" class="btn btn-primary">
+                  <i class="fas fa-chevron-right"></i>
+                  Conheça a nossa história
+                </router-link>
+                <router-link to="/voos" class="btn btn-outline">
+                  <i class="fas fa-plane-departure"></i>
+                  Consultar voos
+                </router-link>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      <!-- Onda decorativa (opcional) -->
+      <div class="banner-wave">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+          <path
+            fill="#ffffff"
+            fill-opacity="1"
+            d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,170.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"
+          ></path>
+        </svg>
+      </div>
     </section>
 
     <!-- Seção Principal Sobre -->
-    <section class="about-section about--style page-wrapper-two ptb-120">
+    <section class="about-section about--style page-wrapper-two ptb-60">
       <div class="container">
         <div class="row justify-content-center align-items-center mb-30-none">
           <!-- Coluna da Imagem / Vídeo -->
@@ -116,71 +143,7 @@
                 </p>
               </div>
 
-              <!-- Estatísticas rápidas (cards) -->
-              <div class="stats-grid">
-                <div class="stat-item">
-                  <div class="stat-number">70+</div>
-                  <div class="stat-label">Anos de História</div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-number">8</div>
-                  <div class="stat-label">Aeroportos Internacionais</div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-number">12+</div>
-                  <div class="stat-label">Aeródromos Regionais</div>
-                </div>
-                <div class="stat-item">
-                  <div class="stat-number">5.2M</div>
-                  <div class="stat-label">Passageiros/Ano</div>
-                </div>
-              </div>
-
-              <!-- Área de contacto (book area adaptada) -->
-              <div class="about-contact-area">
-                <div class="contact-element">
-                  <img
-                    src="@/assets/images/ADM/616176225_1514855020649898_8839484872168926276_n copy.jpg.jpeg"
-                    alt="elemento"
-                  />
-                </div>
-                <div class="contact-info-wrapper">
-                  <div class="contact-icon">
-                    <i class="fas fa-headset"></i>
-                  </div>
-                  <div class="contact-details">
-                    <h3 class="call-title">Central de Atendimento</h3>
-                    <span class="call-phone">
-                      <a href="tel:+25821465900">+258 21 465 900</a>
-                    </span>
-                    <span class="call-note">Atendimento 24 horas, todos os dias</span>
-                  </div>
-                </div>
-                <div class="contact-cta">
-                  <router-link to="/contactos" class="btn--base">
-                    <span>Fale Connosco</span>
-                    <i class="fas fa-arrow-right ml-2"></i>
-                  </router-link>
-                </div>
-              </div>
-
-              <!-- Lista de valores / factos (adaptada da about-list) -->
-              <div class="values-list">
-                <ul>
-                  <li><i class="fas fa-check-circle"></i> Segurança como prioridade</li>
-                  <li><i class="fas fa-check-circle"></i> Excelência operacional</li>
-                  <li><i class="fas fa-check-circle"></i> Hospitalidade moçambicana</li>
-                  <li><i class="fas fa-check-circle"></i> Compromisso com a sustentabilidade</li>
-                </ul>
-              </div>
-
               <!-- Rodapé com call to action adicional -->
-              <div class="about-footer-btn">
-                <router-link to="/sobre/historia" class="btn--base btn-outline">
-                  Conheça a nossa história completa
-                  <i class="fas fa-chevron-right ml-2"></i>
-                </router-link>
-              </div>
             </div>
           </div>
         </div>
@@ -188,7 +151,7 @@
     </section>
 
     <!-- Seção de Missão, Visão e Valores -->
-    <section class="mission-section pt-120 pb-120 bg-light">
+    <section class="mission-section pt-60 pb-120 bg-light">
       <div class="container">
         <div class="section-header text-center" data-aos="fade-up">
           <span class="section-tag">
@@ -294,6 +257,13 @@
 import { ref } from 'vue'
 import TimelineSection from '@/components/sections/TimelineSection.vue'
 import PartnersSection from '@/components/sections/PartnersSection.vue'
+import { computed } from 'vue'
+
+// Import da imagem (certifique-se de que o caminho está correto)
+import bannerImageSrc from '@/assets/images/ADM/616176225_1514855020649898_8839484872168926276_n copy.jpg.jpeg'
+
+// Se preferir usar o caminho direto (caso a importação não funcione)
+const bannerImage = bannerImageSrc
 // Lista de aeroportos para a seção de destaque
 const airports = [
   { code: 'MPM', name: 'Aeroporto Internacional de Maputo', location: 'Maputo', delay: 100 },
@@ -912,6 +882,14 @@ const airports = [
 
 /* Responsividade */
 @media (max-width: 992px) {
+  /* reduce about-section top padding on smaller screens */
+  .about-section.ptb-60 {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+  .mission-section.pt-60 {
+    padding-top: 30px !important;
+  }
   .banner-title {
     font-size: 2.8rem;
   }
@@ -976,6 +954,315 @@ const airports = [
 
   .stats-grid {
     grid-template-columns: 1fr;
+  }
+} /* ===== Banner Hero - CORRIGIDO ===== */
+.hero-banner {
+  position: relative;
+  min-height: 100vh; /* altura total */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: #fff;
+  padding-top: 80px;
+  padding-bottom: 60px;
+}
+
+.banner-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  animation: slowZoom 20s infinite alternate;
+}
+
+@keyframes slowZoom {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+
+.banner-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(3, 1, 64, 0.85) 0%,
+    rgba(3, 1, 64, 0.6) 50%,
+    rgba(242, 228, 22, 0.2) 100%
+  );
+  z-index: 2;
+}
+
+.container {
+  position: relative;
+  z-index: 3;
+}
+
+.min-vh-100 {
+  min-height: 100vh; /* garante que a linha ocupe toda a altura */
+}
+
+/* Conteúdo do banner - alinhado à esquerda */
+.banner-content {
+  max-width: 700px;
+  text-align: left; /* ← importante: alinhar à esquerda */
+  animation: fadeUp 1s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Badge decorativo */
+.badge-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 25px;
+  justify-content: flex-start; /* ← alinhar à esquerda */
+}
+
+.badge-line {
+  flex: 0 1 60px; /* largura fixa para as linhas laterais */
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #f2e416, transparent);
+}
+
+.badge-text {
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #f2e416;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Título */
+.banner-title {
+  margin-bottom: 25px;
+}
+
+.title-line {
+  display: block;
+  font-size: 3.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.title-line.highlight {
+  color: #f2e416;
+  font-size: 4rem;
+  font-weight: 800;
+  text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+  position: relative;
+  display: inline-block;
+}
+
+.title-line.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 12px;
+  background: rgba(242, 228, 22, 0.25);
+  z-index: -1;
+  border-radius: 6px;
+}
+
+/* Descrição */
+.banner-description {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  margin-bottom: 35px;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+}
+
+/* Botões */
+.banner-actions {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 45px;
+  justify-content: flex-start; /* ← alinhar à esquerda */
+}
+
+.btn {
+  padding: 15px 35px;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary {
+  background: #f2e416;
+  color: #030140;
+  box-shadow: 0 8px 20px rgba(242, 228, 22, 0.3);
+}
+
+.btn-primary:hover {
+  background: #ffef57;
+  transform: translateY(-3px);
+  box-shadow: 0 15px 30px rgba(242, 228, 22, 0.4);
+}
+
+.btn-outline {
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  backdrop-filter: blur(5px);
+}
+
+.btn-outline:hover {
+  border-color: #f2e416;
+  color: #f2e416;
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Mini estatísticas */
+.mini-stats {
+  display: flex;
+  gap: 40px;
+  justify-content: flex-start; /* ← alinhar à esquerda */
+}
+
+.stat {
+  text-align: left;
+}
+
+.stat-value {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #f2e416;
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+.stat-label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Onda inferior */
+.banner-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  line-height: 0;
+  z-index: 4;
+}
+
+.banner-wave svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Responsividade - manter alinhamento esquerdo também em mobile */
+@media (max-width: 992px) {
+  .title-line {
+    font-size: 2.8rem;
+  }
+  .title-line.highlight {
+    font-size: 3.2rem;
+  }
+  .mini-stats {
+    gap: 30px;
+  }
+  .stat-value {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-banner {
+    min-height: 90vh;
+    padding: 60px 0;
+    /* Removido text-align: center */
+  }
+  .banner-content {
+    margin: 0; /* sem centralização */
+    text-align: left;
+  }
+  .title-line {
+    font-size: 2.2rem;
+  }
+  .title-line.highlight {
+    font-size: 2.6rem;
+  }
+  .banner-description {
+    font-size: 1rem;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .banner-actions {
+    justify-content: flex-start;
+  }
+  .mini-stats {
+    justify-content: flex-start;
+  }
+  .badge-wrapper {
+    justify-content: flex-start;
+  }
+  .badge-line {
+    flex: 0 1 40px; /* reduz um pouco em mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .title-line {
+    font-size: 1.8rem;
+  }
+  .title-line.highlight {
+    font-size: 2.2rem;
+  }
+  .banner-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .btn {
+    justify-content: center;
+  }
+  .mini-stats {
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  .stat {
+    flex: 1 1 40%;
+  }
+  .banner-wave {
+    display: none;
   }
 }
 </style>
