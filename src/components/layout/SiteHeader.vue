@@ -1,4 +1,4 @@
-<template>
+﻿<template>
   <!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
         Start Header
     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
@@ -28,7 +28,7 @@
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav main-menu ml-auto">
                   <li><router-link to="/">In&iacute;cio</router-link></li>
-                  <li><router-link :to="{ path: '/', hash: '#sobre' }">Sobre</router-link></li>
+                  <li><router-link :to="{ path: '/sobre-nos' }">Sobre</router-link></li>
                   <li class="menu_has_children">
                     <router-link :to="{ path: '/', hash: '#aeroportos' }">Aeroportos</router-link>
                     <ul class="sub-menu">
@@ -49,9 +49,19 @@
                       <li><router-link to="/aeroportos/chimoio">Chimoio (VPY)</router-link></li>
                     </ul>
                   </li>
-                  <li><router-link :to="{ path: '/', hash: '#servicos' }">Servi&ccedil;os</router-link></li>
-                  <li><router-link :to="{ path: '/', hash: '#noticias' }">Not&iacute;cias</router-link></li>
-                  <li><router-link :to="{ path: '/', hash: '#contactos' }">Contactos</router-link></li>
+                  <li>
+                    <router-link :to="{ path: '/', hash: '#servicos' }"
+                      >Servi&ccedil;os</router-link
+                    >
+                  </li>
+                  <li>
+                    <router-link :to="{ path: '/', hash: '#noticias' }"
+                      >Not&iacute;cias</router-link
+                    >
+                  </li>
+                  <li>
+                    <router-link :to="{ path: '/', hash: '#contactos' }">Contactos</router-link>
+                  </li>
                 </ul>
                 <div class="header-right">
                   <div class="header-action-area">
