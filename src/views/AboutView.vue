@@ -138,8 +138,7 @@
                 <p>
                   Hoje, orgulhamo-nos de gerir <strong>8 aeroportos internacionais</strong> e
                   diversos aeródromos regionais, conectando Moçambique a destinos em África, Europa,
-                  Ásia e Médio Oriente, sempre com os mais elevados padrões de segurança e
-                  excelência.
+                  Ásia e Médio Oriente.
                 </p>
               </div>
 

@@ -256,8 +256,8 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
-import axios from 'axios'
 import moment from 'moment'
+import { searchFlightsByAirport, searchFlightByNumber } from '@/services/flightService'
 
 const route = useRoute()
 
@@ -270,14 +270,6 @@ const loading = ref(false)
 const error = ref(null)
 const searchPerformed = ref(false)
 const searchResults = ref([])
-
-// URL da API
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
-
-// Banner background (ajuste o caminho conforme necessário)
-const bannerStyle = computed(() => ({
-  backgroundImage: `url('/src/assets/images/bg/inner-bg.png')`,
-}))
 
 // Aeroportos de Moçambique para sugestões
 const mozambiqueAirports = ['MPM', 'BEW', 'APL', 'POL', 'VNX', 'TET', 'UEL', 'VPY']
@@ -292,7 +284,6 @@ if (route.query.search) {
     searchType.value = 'flight'
     flightNumber.value = query
   }
-  // Executar pesquisa automática
   setTimeout(() => searchFlights(), 100)
 }
 
@@ -308,30 +299,17 @@ const searchFlights = async () => {
 
   try {
     if (searchType.value === 'flight') {
-      // Pesquisa por número do voo
-      const response = await axios.get(
-        `${API_URL}/v1/flights/number/${flightNumber.value.toUpperCase()}`,
-      )
-      searchResults.value = response.data.data ? [response.data.data] : []
+      const flight = await searchFlightByNumber(flightNumber.value)
+      searchResults.value = flight ? [flight] : []
     } else {
-      // Pesquisa por aeroporto
-      const response = await axios.get(`${API_URL}/v1/flights/search`, {
-        params: {
-          airport_code: airportCode.value.toUpperCase(),
-          type: flightType.value,
-        },
-      })
-      searchResults.value = response.data.data || []
+      searchResults.value = await searchFlightsByAirport(
+        airportCode.value.toUpperCase(),
+        flightType.value,
+      )
     }
   } catch (err) {
     console.error('Erro na pesquisa:', err)
-    if (err.response) {
-      error.value = err.response.data.error || 'Erro no servidor'
-    } else if (err.request) {
-      error.value = 'Servidor não respondeu. Verifique sua conexão.'
-    } else {
-      error.value = err.message || 'Erro desconhecido'
-    }
+    error.value = 'Servidor não respondeu. Verifique sua conexão.'
   } finally {
     loading.value = false
   }

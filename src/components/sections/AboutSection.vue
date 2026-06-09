@@ -207,8 +207,8 @@
 <script setup>
 import { ref, computed } from 'vue'
 import { useRouter } from 'vue-router'
-import axios from 'axios'
 import moment from 'moment'
+import { searchFlightsByAirport, searchFlightByNumber } from '@/services/flightService'
 
 const router = useRouter()
 const searchQuery = ref('')
@@ -216,9 +216,6 @@ const showModal = ref(false)
 const loading = ref(false)
 const error = ref(null)
 const searchResults = ref([])
-
-// URL da API vinda do .env
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api'
 
 // Imagem de fundo
 const backgroundImage =
@@ -242,32 +239,15 @@ const searchFlights = async () => {
   try {
     const query = searchQuery.value.toUpperCase().trim()
 
-    // Verifica se é código de aeroporto (3 letras) ou número de voo
     if (/^[A-Z]{3}$/.test(query)) {
-      // É código de aeroporto - busca voos
-      const response = await axios.get(`${API_URL}/v1/flights/search`, {
-        params: {
-          airport_code: query,
-          type: 'departure',
-        },
-      })
-      searchResults.value = response.data.data || []
+      searchResults.value = await searchFlightsByAirport(query, 'departure')
     } else {
-      // É número de voo - busca voo específico
-      const response = await axios.get(`${API_URL}/v1/flights/number/${query}`)
-      searchResults.value = response.data.data ? [response.data.data] : []
+      const flight = await searchFlightByNumber(query)
+      searchResults.value = flight ? [flight] : []
     }
   } catch (err) {
     console.error('Erro:', err)
-
-    if (err.response) {
-      error.value = err.response.data.error || 'Erro no servidor'
-    } else if (err.request) {
-      error.value = 'Servidor não respondeu. Verifique sua conexão.'
-    } else {
-      error.value = err.message || 'Erro desconhecido'
-    }
-
+    error.value = 'Servidor não respondeu. Verifique sua conexão.'
     searchResults.value = []
   } finally {
     loading.value = false

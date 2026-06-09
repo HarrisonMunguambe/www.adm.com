@@ -108,7 +108,7 @@
 import img1954 from '@/assets/images/ADM/624432067_1534931198642280_7496995454634640722_n copy.jpg.jpeg'
 import img1976 from '@/assets/images/ADM/616176225_1514855020649898_8839484872168926276_n copy.jpg.jpeg'
 import img1990 from '@/assets/images/ADM/624737115_1534931181975615_1551209417469668367_n copy.jpg.jpeg'
-import img2010 from '@/assets/images/ADM/76827.jpg'
+import img2010 from '@/assets/images/ADM/Aeroportos-de-Mocambique.jpg'
 import img2020 from '@/assets/images/ADM/625837045_1534931278642272_6568906601830722982_n copy.jpg.jpeg'
 </script>
 
@@ -210,31 +210,40 @@ import img2020 from '@/assets/images/ADM/625837045_1534931278642272_656890660183
 
 /* Coluna da imagem */
 .history-thumb {
-  flex: 0 0 45%;
-  max-width: 45%;
+  flex: 0 0 45% !important;
+  max-width: 45% !important;
+  height: 300px !important; /* altura fixa para todas as imagens */
+  min-height: 0 !important; /* remove qualquer min-height anterior */
   position: relative;
   border-radius: 20px;
   overflow: hidden;
   box-shadow: 0 20px 40px rgba(3, 1, 64, 0.15);
   border: 3px solid #f2e416;
   transition: transform 0.5s ease;
-  min-height: 260px;
-}
-
-.history-thumb:hover {
-  transform: scale(1.02);
 }
 
 .history-thumb img {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
   display: block;
-  object-fit: cover;
+  object-fit: cover; /* Garante que as imagens preencham toda a área sem distorcer */
   transition: transform 0.5s ease;
 }
 
-.history-thumb:hover img {
-  transform: scale(1.1);
+/* Responsividade mantida */
+@media (max-width: 992px) {
+  .history-thumb {
+    height: 250px !important;
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .history-thumb {
+    height: 220px !important;
+  }
 }
 
 /* Coluna do conteúdo */
